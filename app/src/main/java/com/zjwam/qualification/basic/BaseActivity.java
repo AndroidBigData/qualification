@@ -24,7 +24,6 @@ public class BaseActivity extends AppCompatActivity {
         StatusBarUtil.setColor(this, getResources().getColor(R.color.colorPrimary), 60);
     }
 
-
     /**
      * 关闭Activity的广播
      */
