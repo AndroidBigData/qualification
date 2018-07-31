@@ -23,6 +23,10 @@ public class LoginPresenter implements ILoginPresenter {
         loginModel = new LoginModel();
     }
 
+    public void loginBtn(){
+        baseView.initData();
+    }
+
     @Override
     public void login(String name,String pass) {
         loginModel.OkGoHttp(name,pass,context, new CallBack<EmptyBean>() {

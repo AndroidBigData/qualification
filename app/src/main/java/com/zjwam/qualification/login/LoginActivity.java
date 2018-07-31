@@ -27,17 +27,17 @@ public class LoginActivity extends BaseActivity implements BaseView{
         login_pass = findViewById(R.id.login_pass);
         login = findViewById(R.id.login);
         loginPresenter = new LoginPresenter(this,this);
+        loginPresenter.loginBtn();
+
+    }
+    @Override
+    public void initData() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginPresenter.login(login_name.getText().toString().trim(),login_pass.getText().toString().trim());
             }
         });
-    }
-
-    @Override
-    public void initData() {
-
     }
 
     @Override
