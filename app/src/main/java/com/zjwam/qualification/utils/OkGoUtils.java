@@ -1,7 +1,6 @@
 package com.zjwam.qualification.utils;
 
 import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cache.CacheMode;
 import com.zjwam.qualification.callback.JsonCallback;
 
 import java.util.Map;

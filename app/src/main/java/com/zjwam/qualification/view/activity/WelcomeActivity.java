@@ -1,4 +1,4 @@
-package com.zjwam.qualification.view;
+package com.zjwam.qualification.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;

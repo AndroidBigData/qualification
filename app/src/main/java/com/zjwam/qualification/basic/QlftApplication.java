@@ -3,7 +3,6 @@ package com.zjwam.qualification.basic;
 import android.app.Application;
 
 import com.lzy.okgo.OkGo;
-import com.lzy.okgo.cache.CacheEntity;
 import com.lzy.okgo.cache.CacheMode;
 import com.lzy.okgo.cookie.CookieJarImpl;
 import com.lzy.okgo.cookie.store.DBCookieStore;

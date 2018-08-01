@@ -28,29 +28,12 @@ import java.lang.reflect.Type;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
 
-/**
- * ================================================
- * 作    者：jeasonlzy（廖子尧）Github地址：https://github.com/jeasonlzy
- * 版    本：1.0
- * 创建日期：2016/1/14
- * 描    述：默认将返回的数据解析成需要的Bean,可以是 BaseBean，String，List，Map
- * 修订历史：
- * ================================================
- */
 public abstract class JsonCallback<T> extends AbsCallback<T> {
 
-    /**
-     * 该方法是子线程处理，不能做ui相关的工作
-     * 主要作用是解析网络返回的 response 对象,生产onSuccess回调中需要的数据对象
-     * 这里的解析工作不同的业务逻辑基本都不一样,所以需要自己实现,以下给出的是模板代码,实际使用根据需要修改
-     */
     @Override
     public T convertResponse(Response response) {
-
-        //详细自定义的原理和文档，看这里： https://github.com/jeasonlzy/okhttp-OkGo/wiki/JsonCallback
-
         Type genType = getClass().getGenericSuperclass();
-        Type[] params = ((ParameterizedType)genType).getActualTypeArguments();
+        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
         Type type = params[0];
         if (!(type instanceof ParameterizedType)) throw new IllegalStateException("没有填写泛型!");
         Type rawType = ((ParameterizedType) type).getRawType();
@@ -59,21 +42,21 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
         if (body == null) return null;
         Gson gson = new Gson();
         JsonReader jsonReader = new JsonReader(body.charStream());
-        if (rawType != ResponseBean.class){
-            T data = gson.fromJson(jsonReader,type);
+        if (rawType != ResponseBean.class) {
+            T data = gson.fromJson(jsonReader, type);
             response.close();
-            return  data;
-        }else {
-            if (typeArgument == Void.class){
-                SimpleResponse simpleResponse = gson.fromJson(jsonReader,SimpleResponse.class);
+            return data;
+        } else {
+            if (typeArgument == Void.class) {
+                SimpleResponse simpleResponse = gson.fromJson(jsonReader, SimpleResponse.class);
                 response.close();
                 return (T) simpleResponse.toLzyResponse();
-            }else {
-                ResponseBean responseBean = gson.fromJson(jsonReader,type);
+            } else {
+                ResponseBean responseBean = gson.fromJson(jsonReader, type);
                 response.close();
                 int code = responseBean.code;
                 //与服务器约定的各种code
-                if (code == 1){
+                if (code == 1) {
                     return (T) responseBean;
                 } else {
                     throw new MyException(responseBean.toString());
