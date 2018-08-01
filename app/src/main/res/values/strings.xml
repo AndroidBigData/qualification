@@ -1,3 +1,9 @@
 <resources>
-    <string name="app_name">qualification</string>
+    <string name="app_name">资格证</string>
+    <string name="main_fragment">首页</string>
+    <string name="curriculum_fragment">课程</string>
+    <string name="mine_fragment">我的</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

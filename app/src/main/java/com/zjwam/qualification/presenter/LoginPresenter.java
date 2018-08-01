@@ -1,6 +1,7 @@
 package com.zjwam.qualification.presenter;
 
 import android.content.Context;
+import android.content.Intent;
 
 import com.lzy.okgo.model.Response;
 import com.zjwam.qualification.bean.EmptyBean;
@@ -38,6 +39,7 @@ public class LoginPresenter implements ILoginPresenter {
                 @Override
                 public void onSuccess(Response<ResponseBean<EmptyBean>> response) {
                     msg = response.body().msg;
+                    loginView.jumpToMainActivity();
                 }
                 @Override
                 public void onError(Response<ResponseBean<EmptyBean>> response) {
@@ -46,11 +48,18 @@ public class LoginPresenter implements ILoginPresenter {
                 }
                 @Override
                 public void onFinish() {
-                    loginView.initData(msg);
+                    loginView.showMsg(msg);
                 }
             });
         }else {
-            loginView.initData("请完善登录信息");
+            loginView.showMsg("请完善登录信息");
         }
+    }
+
+    @Override
+    public void exitApp() {
+        Intent intent = new Intent();
+        intent.setAction("exitapp");
+        context.sendBroadcast(intent);
     }
 }
