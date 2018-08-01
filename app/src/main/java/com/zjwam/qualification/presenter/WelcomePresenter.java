@@ -1,15 +1,16 @@
 package com.zjwam.qualification.presenter;
 
-import com.zjwam.qualification.view.BaseView;
+import com.zjwam.qualification.presenter.ipresenter.IWecoomePresenter;
+import com.zjwam.qualification.view.iview.IWecomeView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class WelcomePresenter implements BasePresenter {
-    private BaseView baseView;
+public class WelcomePresenter implements IWecoomePresenter {
+    private IWecomeView IWecomeView;
     private Timer timer;
     private TimerTask task;
-    public WelcomePresenter(BaseView baseView) {
-        this.baseView = baseView;
+    public WelcomePresenter(IWecomeView IWecomeView) {
+        this.IWecomeView = IWecomeView;
     }
     @Override
     public void manageData() {
@@ -17,7 +18,7 @@ public class WelcomePresenter implements BasePresenter {
         task = new TimerTask() {
             @Override
             public void run() {
-                baseView.initData();
+                IWecomeView.initData();
             }
         };
         timer.schedule(task, 2000);

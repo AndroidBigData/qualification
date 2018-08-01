@@ -81,19 +81,4 @@ public abstract class JsonCallback<T> extends AbsCallback<T> {
             }
         }
     }
-
-//    @Override
-//    public void onError(com.lzy.okgo.model.Response<T> response) {
-//        Throwable exception = response.getException();
-//        if (exception != null) exception.printStackTrace();
-//        if (exception instanceof UnknownHostException || exception instanceof ConnectException){
-//            System.out.println("网络连接失败，请连接网络");
-//        }else if (exception instanceof SocketTimeoutException){
-//            System.out.println("网络请求超时");
-//        }else if (exception instanceof HttpException){
-//            System.out.println("服务端响应码404和500");
-//        }else if (exception instanceof StorageException){
-//            System.out.println("SD卡不存在或者没有权限");
-//        }
-//    }
 }

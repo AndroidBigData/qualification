@@ -8,11 +8,11 @@ import android.view.ViewGroup;
 import com.jaeger.library.StatusBarUtil;
 import com.zjwam.qualification.R;
 import com.zjwam.qualification.basic.BaseActivity;
-import com.zjwam.qualification.login.LoginActivity;
 import com.zjwam.qualification.presenter.WelcomePresenter;
+import com.zjwam.qualification.view.iview.IWecomeView;
 
 
-public class WelcomeActivity extends BaseActivity implements BaseView {
+public class WelcomeActivity extends BaseActivity implements IWecomeView {
 
     private ConstraintLayout wecomeimg;
     private WelcomePresenter welcomePresenter;

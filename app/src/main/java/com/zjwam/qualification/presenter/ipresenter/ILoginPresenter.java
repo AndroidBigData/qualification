@@ -1,4 +1,4 @@
-package com.zjwam.qualification.presenter;
+package com.zjwam.qualification.presenter.ipresenter;
 
 public interface ILoginPresenter {
     void login(String name,String pass);

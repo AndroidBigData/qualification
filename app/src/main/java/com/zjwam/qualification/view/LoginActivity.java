@@ -1,4 +1,4 @@
-package com.zjwam.qualification.login;
+package com.zjwam.qualification.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,9 @@ import android.widget.Toast;
 import com.zjwam.qualification.R;
 import com.zjwam.qualification.basic.BaseActivity;
 import com.zjwam.qualification.presenter.LoginPresenter;
-import com.zjwam.qualification.view.BaseView;
+import com.zjwam.qualification.view.iview.ILoginView;
 
-public class LoginActivity extends BaseActivity implements BaseView{
+public class LoginActivity extends BaseActivity implements ILoginView {
     private String EXITAPP = "再按一次退出程序";
     private long exitTime = 0;
     private EditText login_name,login_pass;
@@ -27,17 +27,16 @@ public class LoginActivity extends BaseActivity implements BaseView{
         login_pass = findViewById(R.id.login_pass);
         login = findViewById(R.id.login);
         loginPresenter = new LoginPresenter(this,this);
-        loginPresenter.loginBtn();
-
-    }
-    @Override
-    public void initData() {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 loginPresenter.login(login_name.getText().toString().trim(),login_pass.getText().toString().trim());
             }
         });
+    }
+    @Override
+    public void initData(String msg) {
+        Toast.makeText(getBaseContext(),msg,Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -58,7 +57,7 @@ public class LoginActivity extends BaseActivity implements BaseView{
     /**
      * 退出应用程序的方法，发送退出程序的广播
      */
-    private void exitApp() {
+    public void exitApp() {
         Intent intent = new Intent();
         intent.setAction("exitapp");
         this.sendBroadcast(intent);
