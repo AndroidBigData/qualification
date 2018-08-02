@@ -21,7 +21,7 @@ import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.zjwam.qualification.R;
 import com.zjwam.qualification.adapter.PersonalMineCommentAdapter;
 import com.zjwam.qualification.bean.PersonalMineCommentBean;
-import com.zjwam.qualification.presenter.ipresenter.CurriculumPresenter;
+import com.zjwam.qualification.presenter.CurriculumPresenter;
 import com.zjwam.qualification.presenter.ipresenter.ICurriculumPresenter;
 import com.zjwam.qualification.view.iview.ICurriculumView;
 

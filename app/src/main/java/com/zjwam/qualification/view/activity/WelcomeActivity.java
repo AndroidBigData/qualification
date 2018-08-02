@@ -22,7 +22,7 @@ public class WelcomeActivity extends BaseActivity implements IWecomeView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         init();
-        welcomePresenter = new WelcomePresenter(this);
+        welcomePresenter = new WelcomePresenter(this,this);
         welcomePresenter.manageData();
     }
 
@@ -42,9 +42,16 @@ public class WelcomeActivity extends BaseActivity implements IWecomeView {
     }
 
     @Override
-    public void initData() {
-        Intent intent = (new Intent(this, LoginActivity.class));
-        startActivity(intent);
-        finish();
+    public void initData(boolean isFlag) {
+        if (isFlag){
+            Intent intent = (new Intent(this, MainActivity.class));
+            startActivity(intent);
+            finish();
+        }else {
+            Intent intent = (new Intent(this, LoginActivity.class));
+            startActivity(intent);
+            finish();
+        }
+
     }
 }

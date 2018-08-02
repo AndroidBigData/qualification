@@ -161,15 +161,15 @@ public class MainActivity extends BaseActivity{
         img_home.setImageResource(position == 0 ? R.drawable.home_select
                 : R.drawable.home);
         txt_home.setTextColor(getResources().getColor(
-                position == 0 ? R.color.black : R.color.text_color_gray));
+                position == 0 ? R.color.main_select_text : R.color.text_color_gray));
         img_curriculum.setImageResource(position == 1 ? R.drawable.curriculum_select
                 : R.drawable.curriculum);
         txt_curriculum.setTextColor(getResources().getColor(
-                position == 1 ? R.color.black : R.color.text_color_gray));
+                position == 1 ? R.color.main_select_text : R.color.text_color_gray));
         img_mine.setImageResource(position == 2 ? R.drawable.mine_select
                 : R.drawable.mine);
         txt_mine.setTextColor(getResources().getColor(
-                position == 2 ? R.color.black : R.color.text_color_gray));
+                position == 2 ? R.color.main_select_text : R.color.text_color_gray));
     }
 
     /**

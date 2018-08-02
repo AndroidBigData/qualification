@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.jaeger.library.StatusBarUtil;
 import com.zjwam.qualification.R;
 import com.zjwam.qualification.basic.BaseActivity;
 import com.zjwam.qualification.presenter.LoginPresenter;
@@ -20,6 +21,7 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     private EditText login_name, login_pass;
     private Button login;
     private ILoginPresenter loginPresenter;
+    private View login_title_img;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,5 +63,11 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public void jumpToMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
+    }
+
+    @Override
+    protected void setStatusBar() {
+        login_title_img = findViewById(R.id.login_title_img);
+        StatusBarUtil.setTranslucentForImageView(LoginActivity.this,login_title_img);
     }
 }

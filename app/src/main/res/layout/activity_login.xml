@@ -3,25 +3,112 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.LoginActivity">
+    tools:context=".view.activity.LoginActivity"
+    android:background="@color/white">
 
-    <EditText
-        android:id="@+id/login_name"
+    <ImageView
+        android:id="@+id/login_img"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="fitXY"
+        android:background="@color/black"
+        android:layout_alignParentTop="true"/>
+    <ImageView
+        android:id="@+id/login_title_img"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="账号"/>
-    <EditText
-        android:id="@+id/login_pass"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:src="@drawable/login_title_img"/>
+
+    <RelativeLayout
+        android:id="@+id/viewNeedOffset"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="密码"
-        android:layout_below="@+id/login_name"/>
-    <Button
-        android:id="@+id/login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="登录"
-        android:layout_below="@+id/login_pass"
-        android:layout_centerHorizontal="true"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/login_img">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:id="@+id/login_name_linearLayout"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/login_name_img"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+                <EditText
+                    android:id="@+id/login_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:textSize="16sp"
+                    android:hint="请输入账号"
+                    android:textColor="@color/text_login"
+                    android:background="@null"
+                    android:inputType="phone"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"/>
+            </LinearLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:layout_marginTop="38dp"
+            android:layout_below="@+id/login_name_linearLayout"
+            android:id="@+id/login_name_linearLayout2">
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:src="@drawable/login_pass_img"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="10dp">
+                <EditText
+                    android:id="@+id/login_pass"
+                    android:layout_width="match_parent"
+                    android:layout_height="29dp"
+                    android:textSize="16sp"
+                    android:hint="请输入密码"
+                    android:textColor="@color/text_login"
+                    android:background="@null"
+                    android:inputType="textPassword"/>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/colorAccent"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/login"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:text="登 录"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="38dp"
+            android:layout_marginStart="44dp"
+            android:layout_marginEnd="44dp"
+            android:layout_below="@+id/login_name_linearLayout2"
+            android:background="@drawable/login_btn_shape"/>
+    </RelativeLayout>
 
 </RelativeLayout>

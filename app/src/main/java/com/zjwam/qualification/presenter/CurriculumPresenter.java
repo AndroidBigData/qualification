@@ -1,4 +1,4 @@
-package com.zjwam.qualification.presenter.ipresenter;
+package com.zjwam.qualification.presenter;
 
 import android.content.Context;
 
@@ -8,6 +8,7 @@ import com.zjwam.qualification.bean.ResponseBean;
 import com.zjwam.qualification.callback.BasicCallback;
 import com.zjwam.qualification.model.CurriculumModel;
 import com.zjwam.qualification.model.imodel.ICurriculumModel;
+import com.zjwam.qualification.presenter.ipresenter.ICurriculumPresenter;
 import com.zjwam.qualification.utils.HttpErrorMsg;
 import com.zjwam.qualification.view.iview.ICurriculumView;
 
