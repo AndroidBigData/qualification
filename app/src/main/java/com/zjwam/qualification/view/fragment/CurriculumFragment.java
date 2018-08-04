@@ -2,6 +2,7 @@ package com.zjwam.qualification.view.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -25,6 +27,7 @@ import com.zjwam.qualification.bean.ClassificationBean;
 import com.zjwam.qualification.bean.CoursesListBean;
 import com.zjwam.qualification.presenter.CurriculumPresenter;
 import com.zjwam.qualification.presenter.ipresenter.ICurriculumPresenter;
+import com.zjwam.qualification.view.activity.VideoPlayerActivity;
 import com.zjwam.qualification.view.iview.ICurriculumView;
 
 import java.util.List;
@@ -118,6 +121,13 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
                 } else {
                     curriculum_recyclerview.setNoMore(true);
                 }
+            }
+        });
+
+        lRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
             }
         });
 
