@@ -122,9 +122,9 @@ public class MainActivity extends BaseActivity{
         index_mine.setOnClickListener(onClickListener);
         currentFragment = new Fragment();
         fragments = new ArrayList<>();
-        homePageFragment = new HomePageFragment();
+        homePageFragment = HomePageFragment.newInstance(this);
         curriculumFragment = CurriculumFragment.newInstance(this);
-        mineFragment = new MineFragment();
+        mineFragment = MineFragment.newInstance(this);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {

@@ -5,12 +5,13 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
@@ -19,8 +20,9 @@ import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.zjwam.qualification.R;
-import com.zjwam.qualification.adapter.PersonalMineCommentAdapter;
-import com.zjwam.qualification.bean.PersonalMineCommentBean;
+import com.zjwam.qualification.adapter.CoursesListAdapter;
+import com.zjwam.qualification.bean.ClassificationBean;
+import com.zjwam.qualification.bean.CoursesListBean;
 import com.zjwam.qualification.presenter.CurriculumPresenter;
 import com.zjwam.qualification.presenter.ipresenter.ICurriculumPresenter;
 import com.zjwam.qualification.view.iview.ICurriculumView;
@@ -35,10 +37,14 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
     private LRecyclerView curriculum_recyclerview;
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private Context context;
-    private PersonalMineCommentAdapter mineCommentAdapter;
+    private CoursesListAdapter coursesListAdapter;
     private boolean isRefresh = true;
     private int page = 1,mCurrentCounter = 0,max_items;
     private ICurriculumPresenter curriculumPresenter;
+    private TabLayout curriculum_tab;
+    private long cid = 0;
+    private List<ClassificationBean> classification;
+    private ImageView curriculum_nodata;
 
     public CurriculumFragment() {
         // Required empty public constructor
@@ -62,8 +68,32 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         initView();
-        mineCommentAdapter = new PersonalMineCommentAdapter(getActivity());
-        lRecyclerViewAdapter = new LRecyclerViewAdapter(mineCommentAdapter);
+
+        curriculum_tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if (coursesListAdapter != null){
+                    coursesListAdapter.clear();
+                    cid = classification.get(tab.getPosition()).getId();
+                    curriculum_recyclerview.refresh();
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        curriculumPresenter.getClassification();
+//        Reflex.setReflex(curriculum_tab,66);
+        coursesListAdapter = new CoursesListAdapter(getActivity());
+        lRecyclerViewAdapter = new LRecyclerViewAdapter(coursesListAdapter);
         curriculum_recyclerview.setAdapter(lRecyclerViewAdapter);
         curriculum_recyclerview.setLayoutManager(new LinearLayoutManager(getActivity()));
         curriculum_recyclerview.setLoadingMoreProgressStyle(ProgressStyle.BallSpinFadeLoader);
@@ -75,7 +105,7 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
                 isRefresh = true;
                 page = 1;
                 mCurrentCounter = 0;
-                curriculumPresenter.getData("885",String.valueOf(page),isRefresh);
+                curriculumPresenter.getData(String.valueOf(cid),String.valueOf(page),isRefresh);
             }
         });
         curriculum_recyclerview.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -84,31 +114,33 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
                 isRefresh = false;
                 if (mCurrentCounter < max_items) {
                     page++;
-                    curriculumPresenter.getData("885",String.valueOf(page),isRefresh);
+                    curriculumPresenter.getData(String.valueOf(cid),String.valueOf(page),isRefresh);
                 } else {
                     curriculum_recyclerview.setNoMore(true);
                 }
             }
         });
-        curriculum_recyclerview.refresh();
+
     }
 
     private void initView() {
         curriculum_recyclerview = getActivity().findViewById(R.id.curriculum_recyclerview);
+        curriculum_tab = getActivity().findViewById(R.id.curriculum_tab);
+        curriculum_nodata = getActivity().findViewById(R.id.curriculum_nodata);
         curriculumPresenter = new CurriculumPresenter(context,this);
     }
 
     @Override
-    public void initData(List<PersonalMineCommentBean.getCommentItems> list) {
+    public void initData(List<CoursesListBean.classList> list) {
         max_items = curriculumPresenter.maxItems();
-        Log.i("---list:",list.toString());
-        mineCommentAdapter.addAll(list);
+        curriculum_nodata.setVisibility(View.GONE);
+        coursesListAdapter.addAll(list);
         mCurrentCounter += list.size();
     }
 
     @Override
     public void clearRecyclerView() {
-        mineCommentAdapter.clear();
+        coursesListAdapter.clear();
     }
 
     @Override
@@ -120,5 +152,20 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
     public void refreshComplete() {
         curriculum_recyclerview.refreshComplete(10);
         lRecyclerViewAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void setClassification(List<ClassificationBean> classification) {
+        this.classification = classification;
+        for (int i=0;i<classification.size();i++){
+            curriculum_tab.addTab(curriculum_tab.newTab().setText(classification.get(i).getName()));
+        }
+        cid = classification.get(0).getId();
+        curriculum_recyclerview.refresh();
+    }
+
+    @Override
+    public void setNoData() {
+        curriculum_nodata.setVisibility(View.VISIBLE);
     }
 }

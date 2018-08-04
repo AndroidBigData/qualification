@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.HomePageFragment">
+    tools:context=".view.fragment.HomePageFragment"
+    android:background="@color/white">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ImageView
+        android:id="@+id/main_logo"
+        android:layout_width="113dp"
+        android:layout_height="28dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="7dp"
+        android:src="@drawable/main_logo" />
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/rank_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="HomePageFragment" />
+        android:layout_above="@+id/rank_down"
+        android:layout_below="@+id/main_logo" />
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/rank_down"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:orientation="vertical"
+        android:layout_above="@+id/bottom_relativeLayout"
+        android:gravity="center">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/main_down"/>
+    </LinearLayout>
+    <RelativeLayout
+        android:id="@+id/bottom_relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="34dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/bg_gray"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:src="@drawable/zjwam" />
+    </RelativeLayout>
+</RelativeLayout>

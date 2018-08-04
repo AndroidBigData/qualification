@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFFFFF</color>
-    <color name="colorPrimaryDark">#FFFFFF</color>
-    <color name="colorAccent">#4492E7</color>
+    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimaryDark">#ffffff</color>
+    <color name="colorAccent">#00A3FF</color>
 
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
@@ -11,4 +11,9 @@
     <color name="text_login">#767979</color>
     <color name="login_btn">#226AD4</color>
     <color name="main_select_text">#00ADFF</color>
+    <color name="bg_gray">#F2F2F2</color>
+    <color name="rank_yellow">#FEF800</color>
+    <color name="rank_nickname">#01B1FF</color>
+    <color name="rank_qm">#A2A2A2</color>
+    <color name="curriculum_tab">#01ADFC</color>
 </resources>

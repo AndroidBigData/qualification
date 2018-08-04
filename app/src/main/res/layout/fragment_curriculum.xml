@@ -1,13 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.CurriculumFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.fragment.CurriculumFragment"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:id="@+id/curriculum_linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_margin="10dp"
+        android:background="@drawable/curriculum_search_shape"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/search" />
+
+        <TextView
+            android:id="@+id/search_title_curriculum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="搜索课程"
+            android:singleLine="true"
+            android:textColor="@color/text_color_gray"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/curriculum_view_line"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/curriculum_linearLayout"
+        android:background="@color/line_gray" />
+
+    <android.support.design.widget.TabLayout
+        android:id="@+id/curriculum_tab"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/curriculum_view_line"
+        app:tabIndicatorColor="@color/white"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/curriculum_tab"
+        app:tabTextColor="@color/text_color_gray"/>
+
+    <View
+        android:id="@+id/curriculum_view_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/curriculum_tab"
+        android:background="@color/line_gray" />
 
     <com.github.jdsjlzx.recyclerview.LRecyclerView
         android:id="@+id/curriculum_recyclerview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_below="@+id/curriculum_view_line2"/>
 
-</FrameLayout>
+    <ImageView
+        android:id="@+id/curriculum_nodata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/no_data"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
+</RelativeLayout>

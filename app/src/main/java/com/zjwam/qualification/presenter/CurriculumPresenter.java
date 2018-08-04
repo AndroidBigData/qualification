@@ -3,16 +3,19 @@ package com.zjwam.qualification.presenter;
 import android.content.Context;
 
 import com.lzy.okgo.model.Response;
-import com.zjwam.qualification.bean.PersonalMineCommentBean;
+import com.zjwam.qualification.bean.ClassificationBean;
+import com.zjwam.qualification.bean.CoursesListBean;
 import com.zjwam.qualification.bean.ResponseBean;
 import com.zjwam.qualification.callback.BasicCallback;
 import com.zjwam.qualification.model.CurriculumModel;
 import com.zjwam.qualification.model.imodel.ICurriculumModel;
 import com.zjwam.qualification.presenter.ipresenter.ICurriculumPresenter;
 import com.zjwam.qualification.utils.HttpErrorMsg;
+import com.zjwam.qualification.utils.Url;
 import com.zjwam.qualification.view.iview.ICurriculumView;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class CurriculumPresenter implements ICurriculumPresenter {
@@ -29,22 +32,26 @@ public class CurriculumPresenter implements ICurriculumPresenter {
     }
 
     @Override
-    public void getData(String uid, String page, final boolean isRefresh) {
+    public void getData(String cid, String page, final boolean isRefresh) {
         param = new HashMap<>();
-        param.put("uid", uid);
+        param.put("uid", curriculumModel.Uid(context));
+        param.put("cid",cid);
         param.put("page", page);
-        curriculumModel.getData("http://zkw.org.cn/api/user/comment", context, param, new BasicCallback<ResponseBean<PersonalMineCommentBean>>() {
+        curriculumModel.getData(Url.url+"/api/index/getList"+Url.type+curriculumModel.Site(context), context, param, new BasicCallback<ResponseBean<CoursesListBean>>() {
             @Override
-            public void onSuccess(Response<ResponseBean<PersonalMineCommentBean>> response) {
+            public void onSuccess(Response<ResponseBean<CoursesListBean>> response) {
                 max_items = response.body().data.getCount();
                 if (isRefresh) {
                     curriculumView.clearRecyclerView();
                 }
-                curriculumView.initData(response.body().data.getComment());
+                if (max_items>0){
+                    curriculumView.initData(response.body().data.getClassList());
+                }else {
+                    curriculumView.setNoData();
+                }
             }
-
             @Override
-            public void onError(Response<ResponseBean<PersonalMineCommentBean>> response) {
+            public void onError(Response<ResponseBean<CoursesListBean>> response) {
                 Throwable exception = response.getException();
                 String msg = HttpErrorMsg.getErrorMsg(exception);
                 curriculumView.showMsg(msg);
@@ -60,5 +67,27 @@ public class CurriculumPresenter implements ICurriculumPresenter {
     @Override
     public int maxItems() {
         return max_items;
+    }
+
+    @Override
+    public void getClassification() {
+        curriculumModel.getClassification(Url.url + "/api/index/cate" + Url.type + curriculumModel.Site(context), context, null, new BasicCallback<ResponseBean<List<ClassificationBean>>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<List<ClassificationBean>>> response) {
+                curriculumView.setClassification(response.body().data);
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<List<ClassificationBean>>> response) {
+                Throwable exception = response.getException();
+                String msg = HttpErrorMsg.getErrorMsg(exception);
+                curriculumView.showMsg(msg);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        });
     }
 }
