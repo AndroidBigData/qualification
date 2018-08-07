@@ -16,4 +16,9 @@
     <color name="rank_nickname">#01B1FF</color>
     <color name="rank_qm">#A2A2A2</color>
     <color name="curriculum_tab">#01ADFC</color>
+    <color name="video_catalog">#FB5200</color>
+    <color name="video_note">#898989</color>
+    <color name="write_notebook">#4291E8</color>
+    <color name="note_mine">#CE504C</color>
+    <color name="note">#686868</color>
 </resources>

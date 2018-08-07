@@ -127,7 +127,12 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
         lRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
-                startActivity(new Intent(getActivity(), VideoPlayerActivity.class));
+                long id = coursesListAdapter.getDataList().get(position).getId();
+                String name = coursesListAdapter.getDataList().get(position).getName();
+                Bundle bundle = new Bundle();
+                bundle.putLong("id",id);
+                bundle.putString("name",name);
+                startActivity(new Intent(getActivity(), VideoPlayerActivity.class).putExtras(bundle));
             }
         });
 

@@ -1,14 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.VideoNoteFragment">
+    tools:context=".view.fragment.VideoNoteFragment"
+    android:background="@color/bg_gray">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/note_relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:background="@color/white"
+        android:layout_alignParentTop="true">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="输入笔记内容"
+            android:textSize="13sp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/video_note"/>
+        <TextView
+            android:id="@+id/note_write"
+            android:layout_width="58dp"
+            android:layout_height="23dp"
+            android:text="记录"
+            android:gravity="center"
+            android:layout_centerVertical="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:background="@drawable/write_notebook_btn"
+            android:textColor="@color/white"/>
+    </RelativeLayout>
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/note_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="biji" />
+        android:layout_below="@+id/note_relativeLayout"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"/>
+    <ImageView
+        android:id="@+id/note_nodata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:src="@drawable/no_data"
+        android:visibility="gone"/>
 
-</FrameLayout>
+</RelativeLayout>

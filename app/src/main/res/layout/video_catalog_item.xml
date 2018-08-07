@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="40dp">
+
+    <TextView
+        android:id="@+id/video_catalog_item_title"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="10dp"
+        android:layout_toStartOf="@+id/free_learn"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textSize="14sp"
+        android:gravity="center_vertical"
+        android:text="课程标题课程标题课程标题课程标题课程标题课程标题课程标题课程标题" />
+
+    <TextView
+        android:id="@+id/free_learn"
+        android:layout_width="wrap_content"
+        android:layout_height="20dp"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="10dp"
+        android:drawableStart="@drawable/video_catalog_item_dian"
+        android:gravity="center_vertical"
+        android:text="免费试听"
+        android:textColor="@color/video_catalog"
+        android:textSize="8dp" />
+
+</RelativeLayout>
