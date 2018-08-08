@@ -3,79 +3,103 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="40dp">
+
         <ImageView
             android:id="@+id/note_tx"
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:src="@color/colorAccent"
+            android:layout_centerVertical="true"
             android:layout_marginStart="15dp"
-            android:layout_centerVertical="true"/>
+            android:src="@color/colorAccent" />
+
         <TextView
             android:id="@+id/note_nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="NickName"
-            android:layout_toEndOf="@+id/note_tx"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
-            android:textSize="12sp"
-            android:textColor="@color/black"/>
+            android:layout_toEndOf="@+id/note_tx"
+            android:text="NickName"
+            android:textColor="@color/black"
+            android:textSize="12sp" />
+
         <TextView
             android:id="@+id/note_mine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/note_nickname"
             android:layout_toEndOf="@id/note_nickname"
             android:text="  (我的笔记)"
-            android:layout_alignBottom="@+id/note_nickname"
-            android:textSize="8sp"
-            android:textColor="@color/note_mine"/>
+            android:textColor="@color/note_mine"
+            android:textSize="8sp" />
+
         <TextView
             android:id="@+id/note_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2018.8.6 17:27"
-            android:layout_centerVertical="true"
             android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
-            android:textSize="9sp"
-            android:textColor="@color/note" />
+            android:text="2018.8.6 17:27"
+            android:textColor="@color/note"
+            android:textSize="9sp" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="8dp"
-        android:paddingBottom="8dp">
+        android:paddingBottom="8dp"
+        android:paddingTop="8dp">
+
         <TextView
             android:id="@+id/note_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="笔记内容"
-            android:layout_marginStart="50dp"
-            android:textSize="14sp"
-            android:layout_toStartOf="@+id/note_zan"
-            android:layout_marginEnd="10dp"
             android:layout_centerVertical="true"
-            android:textColor="@color/note"/>
-        <TextView
-            android:id="@+id/note_zan"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="50dp"
+            android:layout_toStartOf="@+id/note_linearLayout"
+            android:text="笔记内容"
+            android:textColor="@color/note"
+            android:textSize="14sp" />
+
+        <LinearLayout
+            android:id="@+id/note_linearLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="333"
-            android:drawableTop="@drawable/note_zan"
             android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
             android:layout_marginEnd="25dp"
-            android:textColor="@color/note"
-            android:textSize="8dp"/>
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_centerVertical="true">
+
+            <ImageView
+                android:id="@+id/note_zan_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                android:src="@drawable/zan" />
+
+            <TextView
+                android:id="@+id/note_zan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="333"
+                android:textColor="@color/note"
+                android:textSize="8dp" />
+        </LinearLayout>
+
     </RelativeLayout>
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/line_gray"
+        android:layout_marginEnd="25dp"
         android:layout_marginStart="50dp"
-        android:layout_marginEnd="25dp"/>
+        android:background="@color/line_gray" />
 </LinearLayout>

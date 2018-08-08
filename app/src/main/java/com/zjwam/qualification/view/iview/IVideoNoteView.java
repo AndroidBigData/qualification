@@ -10,4 +10,6 @@ public interface IVideoNoteView {
     void showMsg(String msg);
     void refreshComplete();
     void dialogDismiss();
+    void setZan();
+    void setEnabled();
 }

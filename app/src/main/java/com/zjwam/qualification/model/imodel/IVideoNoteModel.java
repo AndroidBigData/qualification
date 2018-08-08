@@ -16,4 +16,5 @@ public interface IVideoNoteModel {
     long getVid(Context context);
     String getVtime(Context context);
     void getWriteNoteMsg(String url, Object context, Map<String,String> param, BasicCallback<ResponseBean<EmptyBean>> basicCallback);
+    void dianZan(String url, Object context, Map<String,String> param, BasicCallback<ResponseBean<EmptyBean>> basicCallback);
 }

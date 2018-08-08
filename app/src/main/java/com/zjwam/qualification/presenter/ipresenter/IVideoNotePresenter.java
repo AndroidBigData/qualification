@@ -6,4 +6,5 @@ public interface IVideoNotePresenter {
     long getVid();
     String getVtime();
     void writeNote(long id,long vid,String vtime,String note);
+    void dianZan(long id,String type);
 }

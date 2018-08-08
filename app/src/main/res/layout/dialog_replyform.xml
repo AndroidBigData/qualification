@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:orientation="vertical">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.1dp"
         android:background="#b4b4b4" />
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,11 +18,14 @@
         android:orientation="horizontal"
         android:paddingBottom="7dp"
         android:paddingTop="7dp">
+
         <EditText
             android:id="@+id/dialog_reply_etContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="8sp"
+            android:layout_toStartOf="@+id/dialog_reply_llBtnReply"
             android:background="@drawable/chatform_textinput_shape"
             android:gravity="center_vertical"
             android:hint="请填写回复内容..."
@@ -31,12 +36,13 @@
             android:paddingTop="7dp"
             android:textColorHint="#aaaaaa"
             android:textSize="13sp"
-            android:layout_marginStart="8sp"
-            android:layout_toStartOf="@+id/dialog_reply_llBtnReply"/>
+            android:textColor="@color/black"/>
+
         <LinearLayout
             android:id="@+id/dialog_reply_llBtnReply"
             android:layout_width="wrap_content"
             android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
@@ -46,13 +52,13 @@
             android:orientation="horizontal"
             android:paddingLeft="8dp"
             android:paddingRight="8dp"
-            android:visibility="visible"
-            android:layout_alignParentEnd="true">
+            android:visibility="visible">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:text="回复"
+                android:text="发送"
                 android:textColor="#ffffff"
                 android:textSize="13sp" />
         </LinearLayout>

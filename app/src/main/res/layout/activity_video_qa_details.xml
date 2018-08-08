@@ -97,6 +97,7 @@
     </LinearLayout>
 
     <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/qa_deatils_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/bg_gray" />

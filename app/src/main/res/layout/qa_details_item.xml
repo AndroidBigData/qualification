@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp">
+
+        <ImageView
+            android:id="@+id/qa_details_title_tx"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/qa_details_title_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="6dp"
+            android:layout_toEndOf="@+id/qa_details_title_tx"
+            android:text="nickName"
+            android:textColor="@color/black"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/qa_details_title_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/qa_details_title_nickname"
+            android:text="回复于：2018.6.25 11:31"
+            android:textColor="@color/text_color_gray"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/qa_details_zan"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:text="333"
+            android:textColor="@color/note"
+            android:textSize="8dp" />
+
+        <ImageView
+            android:id="@+id/qa_deatils_zan_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="5dp"
+            android:layout_marginTop="2dp"
+            android:layout_toStartOf="@+id/qa_details_zan"
+            android:scaleType="centerCrop"
+            android:src="@drawable/zan" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/qa_deatils_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:text="回复内容"
+        android:textColor="@color/note"
+        android:textSize="10dp" />
+</LinearLayout>

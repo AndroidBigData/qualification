@@ -36,26 +36,27 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class VideoNoteFragment extends Fragment implements IVideoNoteView{
+public class VideoNoteFragment extends Fragment implements IVideoNoteView {
 
     private Context context;
-    private long vid,id;
+    private long vid, id;
     private LRecyclerView note_recyclerview;
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private VideoNoteAdapter videoNoteAdapter;
     private boolean isRefresh;
-    private int maxItem,mCurrentCounter,page;
+    private int maxItem, mCurrentCounter, page,zanCou,itemPosition;
     private IVideoNotePresenter videoNotePresenter;
-    private ImageView note_nodata;
+    private ImageView note_nodata,zanImg;
     private TextView note_write;
     private GetVideoTime getVideoTime;
     private ReplayDialog replayDialog;
+    private TextView zan;
 
     public VideoNoteFragment() {
         // Required empty public constructor
     }
 
-    public static VideoNoteFragment newInstance(Context context,long id) {
+    public static VideoNoteFragment newInstance(Context context, long id) {
         Bundle bundle = new Bundle();
         bundle.putString("id", String.valueOf(id));
         VideoNoteFragment fragment = new VideoNoteFragment();
@@ -90,7 +91,7 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView{
     }
 
     private void initData() {
-        videoNotePresenter = new VideoNotePresenter(context,this);
+        videoNotePresenter = new VideoNotePresenter(context, this);
         videoNoteAdapter = new VideoNoteAdapter(context);
         lRecyclerViewAdapter = new LRecyclerViewAdapter(videoNoteAdapter);
         note_recyclerview.setAdapter(lRecyclerViewAdapter);
@@ -104,45 +105,75 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView{
                 page = 1;
                 mCurrentCounter = 0;
                 isRefresh = true;
-                videoNotePresenter.getNote(vid,page,isRefresh);
+                videoNotePresenter.getNote(vid, page, isRefresh);
             }
         });
         note_recyclerview.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
                 isRefresh = false;
-                if (mCurrentCounter < maxItem){
+                if (mCurrentCounter < maxItem) {
                     page++;
-                    videoNotePresenter.getNote(vid,page,isRefresh);
-                }else {
+                    videoNotePresenter.getNote(vid, page, isRefresh);
+                } else {
                     note_recyclerview.setNoMore(true);
                 }
             }
         });
-        replayDialog = new ReplayDialog(context);
+
         note_write.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 getVideoTime.getTime();
-                if (context instanceof VideoPlayerActivity){
+                if (context instanceof VideoPlayerActivity) {
                     ((VideoPlayerActivity) context).error(videoNotePresenter.getVtime());
                 }
+                replayDialog = new ReplayDialog(getActivity());
                 replayDialog.show();
-            }
-        });
-        replayDialog.setOnBtnCommitClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (replayDialog.getContent().trim().length()>0){
-                    String vtime = videoNotePresenter.getVtime();
-                    videoNotePresenter.writeNote(id,vid,vtime,replayDialog.getContent());
-                }else {
-                    if (context instanceof VideoPlayerActivity){
-                        ((VideoPlayerActivity) context).error("请输入内容！");
+                replayDialog.setOnBtnCommitClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (replayDialog.getContent().trim().length() > 0) {
+                            String vtime = getTime(videoNotePresenter.getVtime());
+                            videoNotePresenter.writeNote(id, vid, vtime, replayDialog.getContent());
+                        } else {
+                            if (context instanceof VideoPlayerActivity) {
+                                ((VideoPlayerActivity) context).error("请输入内容！");
+                            }
+                        }
                     }
-                }
+                });
             }
         });
+
+        videoNoteAdapter.setDianZan(new VideoNoteAdapter.DianZan() {
+            @Override
+            public void setZan(TextView textView,ImageView imageView,int zanNum,int position) {
+                zanImg = imageView;
+                zan = textView;
+                zanCou = zanNum;
+                itemPosition = position;
+                zanImg.setEnabled(false);
+                videoNotePresenter.dianZan(videoNoteAdapter.getDataList().get(position).getId(),"note");
+            }
+            @Override
+            public void qxZan(TextView textView, ImageView imageView, int zanNum,int position) {
+                zanImg = imageView;
+                zan = textView;
+                zanCou = zanNum;
+                itemPosition = position;
+                zanImg.setEnabled(false);
+                videoNotePresenter.dianZan(videoNoteAdapter.getDataList().get(position).getId(),"note");
+            }
+        });
+    }
+
+    private String getTime(String time) {
+        if (time.length() < 4) {
+            return "0";
+        } else {
+            return time.substring(0, time.length() - 3);
+        }
     }
 
     private void initView() {
@@ -154,11 +185,11 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView{
     @Override
     public void setNote(List<VideoNoteBean.Note> list) {
         maxItem = videoNotePresenter.getCount();
-        if (maxItem>0){
+        if (maxItem > 0) {
             videoNoteAdapter.addAll(list);
             mCurrentCounter += list.size();
             note_nodata.setVisibility(View.GONE);
-        }else {
+        } else {
             note_nodata.setVisibility(View.VISIBLE);
         }
 
@@ -171,7 +202,7 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView{
 
     @Override
     public void showMsg(String msg) {
-        if (context instanceof VideoPlayerActivity){
+        if (context instanceof VideoPlayerActivity) {
             ((VideoPlayerActivity) context).error(msg);
         }
     }
@@ -190,15 +221,34 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView{
     }
 
     @Override
+    public void setZan() {
+        if (videoNoteAdapter.getDataList().get(itemPosition).getIszan() == 0){
+            zan.setText(String.valueOf(videoNoteAdapter.getDataList().get(itemPosition).getZan()+1));
+            zan.setTextColor(context.getResources().getColor(R.color.colorAccent));
+            zanImg.setImageResource(R.drawable.zan_over);
+            videoNoteAdapter.getDataList().get(itemPosition).setIszan(1);
+            videoNoteAdapter.getDataList().get(itemPosition).setZan(zanCou+1);
+        }else {
+            zan.setText(String.valueOf(videoNoteAdapter.getDataList().get(itemPosition).getZan()-1));
+            zan.setTextColor(context.getResources().getColor(R.color.note));
+            zanImg.setImageResource(R.drawable.zan);
+            videoNoteAdapter.getDataList().get(itemPosition).setIszan(0);
+            videoNoteAdapter.getDataList().get(itemPosition).setZan(zanCou-1);
+        }
+    }
+
+    @Override
+    public void setEnabled() {
+        zanImg.setEnabled(true);
+    }
+
+    @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser){
-            if (vid != videoNotePresenter.getVid()){
+        if (isVisibleToUser) {
+            if (vid != videoNotePresenter.getVid()) {
                 vid = videoNotePresenter.getVid();
                 note_recyclerview.refresh();
-            }
-            if (context instanceof VideoPlayerActivity){
-                ((VideoPlayerActivity) context).error(String.valueOf(vid));
             }
         }
     }

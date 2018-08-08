@@ -103,4 +103,30 @@ public class VideoNotePresenter implements IVideoNotePresenter {
             }
         });
     }
+
+    @Override
+    public void dianZan(long id, String type) {
+        param = new HashMap<>();
+        param.put("id", String.valueOf(id));
+        param.put("uid",videoNoteModel.uid(context));
+        param.put("type",type);
+        videoNoteModel.dianZan(Url.url + "/api/play/zan" + Url.type + videoNoteModel.site(context), context, param, new BasicCallback<ResponseBean<EmptyBean>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<EmptyBean>> response) {
+                videoNoteView.setZan();
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<EmptyBean>> response) {
+                Throwable exception = response.getException();
+                String error = HttpErrorMsg.getErrorMsg(exception);
+                videoNoteView.showMsg(error);
+            }
+
+            @Override
+            public void onFinish() {
+                videoNoteView.setEnabled();
+            }
+        });
+    }
 }

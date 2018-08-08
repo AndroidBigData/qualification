@@ -35,8 +35,16 @@ public class VideoNoteBean {
             return note;
         }
 
+        public void setZan(int zan) {
+            this.zan = zan;
+        }
+
         public int getZan() {
             return zan;
+        }
+
+        public void setIszan(int iszan) {
+            this.iszan = iszan;
         }
 
         public int getIszan() {

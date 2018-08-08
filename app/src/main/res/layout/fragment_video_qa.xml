@@ -22,6 +22,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"/>
         <TextView
+            android:id="@+id/qa_ask"
             android:layout_width="60dp"
             android:layout_height="22dp"
             android:text="去提问"
@@ -39,5 +40,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/white"/>
+    <ImageView
+        android:id="@+id/qa_nodata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/no_data"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
 </RelativeLayout>
