@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -27,6 +28,7 @@ import com.zjwam.qualification.bean.ClassificationBean;
 import com.zjwam.qualification.bean.CoursesListBean;
 import com.zjwam.qualification.presenter.CurriculumPresenter;
 import com.zjwam.qualification.presenter.ipresenter.ICurriculumPresenter;
+import com.zjwam.qualification.view.activity.SearchActivity;
 import com.zjwam.qualification.view.activity.VideoPlayerActivity;
 import com.zjwam.qualification.view.iview.ICurriculumView;
 
@@ -48,6 +50,7 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
     private long cid = 0;
     private List<ClassificationBean> classification;
     private ImageView curriculum_nodata;
+    private LinearLayout curriculum_linearLayout;
 
     public CurriculumFragment() {
         // Required empty public constructor
@@ -136,6 +139,12 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
             }
         });
 
+        curriculum_linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), SearchActivity.class));
+            }
+        });
     }
 
     private void initView() {
@@ -143,6 +152,7 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
         curriculum_tab = getActivity().findViewById(R.id.curriculum_tab);
         curriculum_nodata = getActivity().findViewById(R.id.curriculum_nodata);
         curriculumPresenter = new CurriculumPresenter(context,this);
+        curriculum_linearLayout = getActivity().findViewById(R.id.curriculum_linearLayout);
     }
 
     @Override

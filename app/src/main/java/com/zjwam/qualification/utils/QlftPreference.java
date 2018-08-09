@@ -3,6 +3,9 @@ package com.zjwam.qualification.utils;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class QlftPreference {
     private static final String LOGIN_NAME = "loginName"; //登录名
     private static final String PASSWORD = "password";  //密码

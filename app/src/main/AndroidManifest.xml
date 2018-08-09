@@ -45,7 +45,8 @@
             android:screenOrientation="portrait" />
         <activity android:name=".view.activity.VideoQaDetailsActivity" />
         <activity android:name=".view.activity.AnswerActivity" />
-        <activity android:name=".view.activity.WriteCommentActivity"></activity>
+        <activity android:name=".view.activity.WriteCommentActivity" />
+        <activity android:name=".view.activity.SearchActivity"></activity>
     </application>
 
 </manifest>
