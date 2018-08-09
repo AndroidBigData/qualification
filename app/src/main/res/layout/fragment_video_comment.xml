@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.VideoCommentFragment">
+    tools:context=".view.fragment.VideoCommentFragment"
+    android:background="@color/bg_gray">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/comment_linearLayout"
+        android:paddingStart="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/white"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginTop="10dp">
+        <TextView
+            android:textSize="16sp"
+            android:id="@+id/comment_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="综合评分：9.8"
+            android:layout_centerVertical="true"
+            android:textColor="@color/text_color_gray"/>
+        <RatingBar
+            android:layout_marginStart="5dp"
+            android:id="@+id/comment_rating"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:numStars="5"
+            android:stepSize="1"
+            android:rating="5"
+            android:progressTint="#FC5100"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/comment_num"/>
+        <TextView
+            android:id="@+id/comment"
+            android:layout_width="60dp"
+            android:layout_height="26dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/write_notebook_btn"
+            android:text="评价"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_marginEnd="5dp"/>
+    </RelativeLayout>
+
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/comment_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="pingjia" />
+        android:layout_below="@+id/comment_linearLayout"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/white"/>
+    <ImageView
+        android:id="@+id/comment_nodata"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/no_data"
+        android:layout_centerInParent="true"/>
 
-</FrameLayout>
+</RelativeLayout>

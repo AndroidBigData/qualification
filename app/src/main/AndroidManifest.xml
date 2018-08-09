@@ -43,7 +43,9 @@
             android:name=".view.activity.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.VideoQaDetailsActivity"></activity>
+        <activity android:name=".view.activity.VideoQaDetailsActivity" />
+        <activity android:name=".view.activity.AnswerActivity" />
+        <activity android:name=".view.activity.WriteCommentActivity"></activity>
     </application>
 
 </manifest>
