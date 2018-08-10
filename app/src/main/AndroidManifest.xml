@@ -46,7 +46,8 @@
         <activity android:name=".view.activity.VideoQaDetailsActivity" />
         <activity android:name=".view.activity.AnswerActivity" />
         <activity android:name=".view.activity.WriteCommentActivity" />
-        <activity android:name=".view.activity.SearchActivity"></activity>
+        <activity android:name=".view.activity.SearchActivity" />
+        <activity android:name=".view.activity.SearchResultActivity"></activity>
     </application>
 
 </manifest>

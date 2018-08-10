@@ -1,15 +1,18 @@
 package com.zjwam.qualification.view.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
 import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.zjwam.qualification.R;
@@ -28,12 +31,15 @@ public class SearchActivity extends BaseActivity implements ISearchTJView{
 
     private LRecyclerView tj_recyclerview,ls_recyclerview;
     private SearchTJAdapter searchTJAdapter,lsSearchTJAdapter;
-    private LRecyclerViewAdapter lRecyclerViewAdapter;
+    private LRecyclerViewAdapter lRecyclerViewAdapter,lsLRecyclerViewAdapter;
     private LinearLayout search_lsjl;
     private ISearchTjPresenter searchTjPresenter;
     private EditText search_title_text;
     private List<SearchTJBean> li_search;
     private TextView clear;
+    private SearchTJBean searchTJBean;
+    private Button search_qx;
+    private Bundle bundle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,20 +61,23 @@ public class SearchActivity extends BaseActivity implements ISearchTJView{
         search_title_text.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_SEARCH){
+                if (i == EditorInfo.IME_ACTION_SEARCH && search_title_text.getText().toString().trim().length()>0){
                     KeyboardUtils.hideKeyboard(search_title_text);
-                    error("搜索");
-                    SearchTJBean searchTJBean = new SearchTJBean();
+                    searchTJBean = new SearchTJBean();
                     searchTJBean.setName(search_title_text.getText().toString());
                     li_search.add(searchTJBean);
                     lsSearchTJAdapter = new SearchTJAdapter(getBaseContext());
                     lsSearchTJAdapter.addAll(li_search);
-                    lRecyclerViewAdapter = new LRecyclerViewAdapter(lsSearchTJAdapter);
-                    ls_recyclerview.setAdapter(lRecyclerViewAdapter);
+                    lsLRecyclerViewAdapter = new LRecyclerViewAdapter(lsSearchTJAdapter);
+                    ls_recyclerview.setAdapter(lsLRecyclerViewAdapter);
                     ls_recyclerview.setLayoutManager(new LinearLayoutManager(getBaseContext()));
                     ls_recyclerview.setLoadMoreEnabled(false);
                     ls_recyclerview.setPullRefreshEnabled(false);
                     search_lsjl.setVisibility(View.VISIBLE);
+                    bundle = new Bundle();
+                    bundle.putString("content",search_title_text.getText().toString());
+                    startActivity(new Intent(getBaseContext(),SearchResultActivity.class).putExtras(bundle));
+                    search_title_text.setText("");
                 }
                 return false;
             }
@@ -76,9 +85,25 @@ public class SearchActivity extends BaseActivity implements ISearchTJView{
         clear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                li_search.clear();
                 lsSearchTJAdapter.clear();
-                lsSearchTJAdapter.notifyDataSetChanged();
+                lsLRecyclerViewAdapter.notifyDataSetChanged();
                 search_lsjl.setVisibility(View.GONE);
+            }
+        });
+        lRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putLong("id",searchTJAdapter.getDataList().get(position).getId());
+                bundle.putString("name",searchTJAdapter.getDataList().get(position).getName());
+                startActivity(new Intent(getBaseContext(),VideoPlayerActivity.class).putExtras(bundle));
+            }
+        });
+        search_qx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
     }
@@ -90,6 +115,7 @@ public class SearchActivity extends BaseActivity implements ISearchTJView{
         search_lsjl.setVisibility(View.GONE);
         search_title_text = findViewById(R.id.search_title_text);
         clear = findViewById(R.id.clear);
+        search_qx = findViewById(R.id.search_qx);
     }
 
     @Override
