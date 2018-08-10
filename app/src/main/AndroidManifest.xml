@@ -47,7 +47,13 @@
         <activity android:name=".view.activity.AnswerActivity" />
         <activity android:name=".view.activity.WriteCommentActivity" />
         <activity android:name=".view.activity.SearchActivity" />
-        <activity android:name=".view.activity.SearchResultActivity"></activity>
+        <activity android:name=".view.activity.SearchResultActivity" />
+        <activity android:name=".view.activity.MineNoteActivity" />
+        <activity android:name=".view.activity.MineQAActivity" />
+        <activity android:name=".view.activity.MineCommnetActivity" />
+        <activity android:name=".view.activity.MineInfoActivity" />
+        <activity android:name=".view.activity.MineAboutActivity" />
+        <activity android:name=".view.activity.MineSetActivity"></activity>
     </application>
 
 </manifest>

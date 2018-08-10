@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="5dp"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/round_white_shape">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/mine_ask_img"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@mipmap/ic_launcher_round" />
+
+            <TextView
+                android:id="@+id/mine_ask_nickname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="6dp"
+                android:layout_toEndOf="@+id/mine_ask_img"
+                android:text="nickName"
+                android:textSize="16sp"
+                android:textColor="@color/black"/>
+
+            <TextView
+                android:id="@+id/mine_ask_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:text="2018.6.25 11:31"
+                android:textSize="12sp"
+                android:textColor="@color/note"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp">
+        <TextView
+            android:id="@+id/mine_ask_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="考研一对一"
+            android:textColor="@color/colorAccent"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/mine_ask_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+                    android:textSize="12sp"
+                    android:textColor="@color/colorAccent"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="条回答"
+                    android:textColor="@color/note"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+        </RelativeLayout>
+        <TextView
+            android:id="@+id/mine_ask_title_bt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:text="章节"
+            android:textSize="12sp"
+            android:textColor="@color/colorAccent"/>
+        <TextView
+            android:id="@+id/mine_ask_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:text="提问内容"
+            android:textSize="12sp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/mine_ask_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="31dp"
+            android:text="最新回答"
+            android:textSize="12sp"
+            android:textColor="@color/note"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+    </LinearLayout>
+</LinearLayout>
