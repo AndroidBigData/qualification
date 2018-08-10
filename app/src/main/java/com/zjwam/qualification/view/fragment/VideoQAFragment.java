@@ -115,6 +115,8 @@ public class VideoQAFragment extends Fragment implements IVideoQAView{
                 if (mCurrentCounter<maxItem){
                     page++;
                     videoQAPresenter.getQA(vid,page,isRefresh);
+                }else {
+                    qa_recyclerview.setNoMore(true);
                 }
             }
         });
