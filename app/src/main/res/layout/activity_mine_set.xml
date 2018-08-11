@@ -1,9 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MineSetActivity">
+    tools:context=".view.activity.MineSetActivity"
+    android:orientation="vertical"
+    android:background="@color/bg_gray">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        layout="@layout/basic_title"/>
+    <TextView
+        android:id="@+id/mine_setup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/add_informationl"
+        android:gravity="center_vertical"
+        android:paddingLeft="18dp"
+        android:text="个人资料设置"
+        android:textColor="@color/note"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/setup_safe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:background="@drawable/add_informationl"
+        android:gravity="center_vertical"
+        android:paddingLeft="18dp"
+        android:text="账户安全"
+        android:textColor="@color/note"
+        android:textSize="14sp" />
+
+    <TextView
+        android:id="@+id/logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/add_informationl"
+        android:gravity="center_vertical"
+        android:paddingLeft="18dp"
+        android:text="退出登录"
+        android:textColor="@color/note"
+        android:textSize="14sp" />
+
+</LinearLayout>

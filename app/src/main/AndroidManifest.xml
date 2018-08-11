@@ -53,7 +53,10 @@
         <activity android:name=".view.activity.MineCommnetActivity" />
         <activity android:name=".view.activity.MineInfoActivity" />
         <activity android:name=".view.activity.MineAboutActivity" />
-        <activity android:name=".view.activity.MineSetActivity"></activity>
+        <activity android:name=".view.activity.MineSetActivity" />
+        <activity android:name=".view.activity.MineMsgActivity" />
+        <activity android:name=".view.activity.ChangePassWorldActivity" />
+        <activity android:name=".view.activity.AboutActivity"></activity>
     </application>
 
 </manifest>

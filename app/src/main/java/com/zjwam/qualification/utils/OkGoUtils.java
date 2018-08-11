@@ -1,8 +1,10 @@
 package com.zjwam.qualification.utils;
 
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.model.HttpParams;
 import com.zjwam.qualification.callback.JsonCallback;
 
+import java.io.File;
 import java.util.Map;
 
 public class OkGoUtils {
@@ -24,6 +26,13 @@ public class OkGoUtils {
         OkGo.<T>post(url)
                 .tag(tag)
                 .params(params)
+                .execute(callback);
+    }
+    public static <T> void postFile(String url, Object tag, Map<String, String> params, String pic,File file, JsonCallback<T> callback) {
+        OkGo.<T>post(url)
+                .tag(tag)
+                .params(params)
+                .params(pic,file)
                 .execute(callback);
     }
 }

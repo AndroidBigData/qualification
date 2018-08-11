@@ -1,9 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MineInfoActivity">
+    tools:context=".view.activity.MineInfoActivity"
+    android:background="@color/white">
+    <include
+        layout="@layout/basic_title"
+        android:id="@+id/title"/>
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:id="@+id/mine_info_LinearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_below="@+id/title"
+        android:gravity="center_horizontal"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp">
+        <ImageView
+            android:id="@+id/mine_info_tx"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/mine_info_bg"/>
+        <TextView
+            android:id="@+id/mine_info_nickName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="用户昵称"
+            android:layout_marginTop="10dp"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/mine_info_text1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="账号"
+        android:layout_below="@+id/mine_info_LinearLayout"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/mine_info_loginName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="12345678901"
+        android:textColor="@color/note"
+        android:textSize="14sp"
+        android:layout_alignBottom="@+id/mine_info_text1"
+        android:layout_centerHorizontal="true"/>
+    <TextView
+        android:id="@+id/mine_info_text2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="昵称"
+        android:layout_below="@+id/mine_info_text1"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"
+        android:focusable="true"
+        android:focusableInTouchMode="true"/>
+
+    <EditText
+        android:id="@+id/mine_info_nick2Name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="用户昵称"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_alignBottom="@+id/mine_info_text2"
+        android:layout_alignStart="@+id/mine_info_loginName"
+        android:background="@null"
+        android:inputType="text"
+        android:layout_marginEnd="20dp"/>
+
+    <TextView
+        android:id="@+id/mine_info_text3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="签名"
+        android:layout_below="@+id/mine_info_text2"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <EditText
+        android:id="@+id/mine_info_qm"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="好好学习，天天向上"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_alignBottom="@+id/mine_info_text3"
+        android:layout_alignStart="@+id/mine_info_loginName"
+        android:background="@null"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_marginEnd="20dp"
+        android:inputType="text"/>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/line_gray"
+        android:layout_below="@+id/mine_info_text3"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:id="@+id/mine_info_text4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="性别"
+        android:layout_below="@+id/mine_info_text3"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <Spinner
+        android:id="@+id/mine_info_sex"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_alignBottom="@+id/mine_info_text4"
+        android:layout_alignStart="@+id/mine_info_loginName" />
+
+    <TextView
+        android:id="@+id/mine_info_text5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="邮箱"
+        android:layout_below="@+id/mine_info_text4"
+        android:textSize="14sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <EditText
+        android:id="@+id/mine_info_mail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:text="123@qq.com"
+        android:inputType="textEmailAddress"
+        android:layout_alignBottom="@+id/mine_info_text5"
+        android:layout_alignStart="@+id/mine_info_loginName"
+        android:background="@null"
+        android:layout_marginEnd="20dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/mine_info_text5"
+        android:orientation="vertical"
+        android:gravity="center">
+        <Button
+            android:id="@+id/mine_info_up"
+            android:layout_width="185dp"
+            android:layout_height="40dp"
+            android:text="提交修改"
+            android:background="@drawable/login_btn_shape"
+            android:textColor="@color/white"
+            android:textSize="16sp"/>
+    </LinearLayout>
+</RelativeLayout>
