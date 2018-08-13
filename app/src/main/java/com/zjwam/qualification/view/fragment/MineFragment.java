@@ -23,6 +23,7 @@ import com.zjwam.qualification.utils.GlideImageUtil;
 import com.zjwam.qualification.utils.RequestOptionsUtils;
 import com.zjwam.qualification.view.activity.AboutActivity;
 import com.zjwam.qualification.view.activity.MineCommnetActivity;
+import com.zjwam.qualification.view.activity.MineMsgActivity;
 import com.zjwam.qualification.view.activity.MineNoteActivity;
 import com.zjwam.qualification.view.activity.MineQAActivity;
 import com.zjwam.qualification.view.activity.MineSetActivity;
@@ -99,6 +100,7 @@ public class MineFragment extends Fragment implements IMineView {
                     startActivity(new Intent(getActivity(), MineCommnetActivity.class));
                     break;
                 case R.id.mine_info:
+                    startActivity(new Intent(getActivity(), MineMsgActivity.class));
                     break;
                 case R.id.mine_about:
                     startActivity(new Intent(getActivity(), AboutActivity.class));

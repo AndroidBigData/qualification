@@ -33,7 +33,7 @@ import java.util.List;
  */
 public class HomePageFragment extends Fragment implements IHomePageView{
     private Context context;
-    private ImageView main_logo;
+    private ImageView main_logo,main_img;
     private LRecyclerView rank_recyclerview;
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private MainRankAdapter mainRankAdapter;
@@ -81,6 +81,7 @@ public class HomePageFragment extends Fragment implements IHomePageView{
         rank_recyclerview.setLoadMoreEnabled(false);
         rank_recyclerview.setPullRefreshEnabled(false);
         headerView = LayoutInflater.from(context).inflate(R.layout.main_fragment_header,(ViewGroup)getActivity().findViewById(android.R.id.content),false);
+        main_img = headerView.findViewById(R.id.main_img);
         lRecyclerViewAdapter.addHeaderView(headerView);
         rank_down.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +98,7 @@ public class HomePageFragment extends Fragment implements IHomePageView{
         String logo = rankBean.getLogo();
         List<RankBean.Rank> datas = rankBean.getRank();
         GlideImageUtil.setImageView(context,logo,main_logo, RequestOptionsUtils.commonTransform());
+        GlideImageUtil.setImageView(context,rankBean.getPic(),main_img, RequestOptionsUtils.commonTransform());
         mainRankAdapter.addAll(datas);
     }
 

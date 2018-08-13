@@ -2,6 +2,7 @@ package com.zjwam.qualification.model;
 
 import android.content.Context;
 
+import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.model.Response;
 import com.zjwam.qualification.bean.ResponseBean;
 import com.zjwam.qualification.bean.VersionBean;
@@ -11,6 +12,7 @@ import com.zjwam.qualification.model.imodel.IAboutModel;
 import com.zjwam.qualification.utils.OkGoUtils;
 import com.zjwam.qualification.utils.QlftPreference;
 
+import java.io.File;
 import java.util.Map;
 
 public class AboutModel implements IAboutModel{
@@ -46,4 +48,5 @@ public class AboutModel implements IAboutModel{
     public String site(Context context) {
         return QlftPreference.getInstance(context).getSite();
     }
+
 }

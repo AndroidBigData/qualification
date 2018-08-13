@@ -3,7 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.activity.MineMsgActivity">
+    tools:context=".view.activity.MineMsgActivity"
+    android:background="@color/bg_gray">
 
+    <include
+        layout="@layout/basic_title"
+        android:id="@+id/title"/>
+    <com.github.jdsjlzx.recyclerview.LRecyclerView
+        android:id="@+id/msg_recyclerview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/title"/>
 
 </RelativeLayout>

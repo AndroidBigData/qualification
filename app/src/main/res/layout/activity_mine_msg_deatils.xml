@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_gray"
+    tools:context=".view.activity.MineMsgDeatilsActivity">
+
+    <include
+        android:id="@id/title"
+        layout="@layout/basic_title" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/round_white_shape"
+        android:layout_below="@+id/title"
+        android:layout_margin="10dp">
+
+        <LinearLayout
+            android:id="@+id/msg_details_linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/msg_details_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="【通知公告】"
+                android:textColor="@color/note_title"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/msg_details_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="10dp"
+                android:layout_weight="1"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text="通知公告"
+                android:textColor="@color/note_title"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/msg_details_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/msg_details_content"
+                android:text="2018.8.13 11:05"
+                android:textColor="@color/note"
+                android:textSize="10sp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/msg_details_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/msg_details_linearLayout"
+            android:layout_marginEnd="10dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="10dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="通知内容"
+            android:textColor="@color/note"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/msg_details_from"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/msg_details_content"
+            android:layout_marginEnd="10dp"
+            android:layout_marginTop="10dp"
+            android:text="来自:中教网盟"
+            android:textColor="@color/note"
+            android:textSize="10sp"
+            android:layout_marginBottom="10dp"/>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,6 +1,7 @@
 package com.zjwam.qualification.utils;
 
 import com.lzy.okgo.OkGo;
+import com.lzy.okgo.callback.FileCallback;
 import com.lzy.okgo.model.HttpParams;
 import com.zjwam.qualification.callback.JsonCallback;
 
@@ -34,5 +35,10 @@ public class OkGoUtils {
                 .params(params)
                 .params(pic,file)
                 .execute(callback);
+    }
+    public static void loadFile(String url, Object tag, FileCallback fileCallback){
+        OkGo.<File>get(url)
+                .tag(tag)
+                .execute(fileCallback);
     }
 }

@@ -3,11 +3,15 @@ package com.zjwam.qualification.bean;
 import java.util.List;
 
 public class RankBean {
-    private String logo;
+    private String logo,pic;
     private List<Rank> rank;
 
     public String getLogo() {
         return logo;
+    }
+
+    public String getPic() {
+        return pic;
     }
 
     public List<Rank> getRank() {
