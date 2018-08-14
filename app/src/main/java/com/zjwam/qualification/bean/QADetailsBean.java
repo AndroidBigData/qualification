@@ -3,7 +3,7 @@ package com.zjwam.qualification.bean;
 import java.util.List;
 
 public class QADetailsBean {
-    private String nickname,pic,addtime,content;
+    private String nickname,pic,addtime,content,name,vname;
     private int count;
     private long id;
     private List<Sub> sub;
@@ -34,6 +34,14 @@ public class QADetailsBean {
 
     public List<Sub> getSub() {
         return sub;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getVname() {
+        return vname;
     }
 
     public class Sub {

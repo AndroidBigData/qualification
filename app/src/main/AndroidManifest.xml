@@ -43,36 +43,52 @@
             android:name=".view.activity.VideoPlayerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.VideoQaDetailsActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.AnswerActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.WriteCommentActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.SearchActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.SearchResultActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineNoteActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineQAActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineCommnetActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineInfoActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineAboutActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineSetActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineMsgActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.ChangePassWorldActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.AboutActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".view.activity.MineMsgDeatilsActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.VideoQaDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AnswerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.WriteCommentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SearchActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.SearchResultActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineNoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineQAActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineCommnetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineAboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineSetActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineMsgActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.ChangePassWorldActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.MineMsgDeatilsActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".view.activity.MineAskDeatilsActivity"></activity>
     </application>
 
 </manifest>

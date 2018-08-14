@@ -16,7 +16,7 @@ public class CourseAnswerBean {
 
     public class Answer{
         private String nickname,pic,addtime,content,vname,name,sub_pic,sub_addtime,sub_nickname,sub_content;
-        private long id;
+        private long id,sub_id;
         private int sub_count;
 
         public String getNickname() {
@@ -61,6 +61,10 @@ public class CourseAnswerBean {
 
         public long getId() {
             return id;
+        }
+
+        public long getSub_id() {
+            return sub_id;
         }
 
         public int getSub_count() {

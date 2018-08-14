@@ -2,6 +2,7 @@ package com.zjwam.qualification.view.fragment;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.github.jdsjlzx.interfaces.OnItemClickListener;
 import com.github.jdsjlzx.interfaces.OnLoadMoreListener;
 import com.github.jdsjlzx.interfaces.OnRefreshListener;
 import com.github.jdsjlzx.recyclerview.LRecyclerView;
@@ -22,6 +24,7 @@ import com.zjwam.qualification.adapter.CourseAnswerAdapter;
 import com.zjwam.qualification.bean.CourseAnswerBean;
 import com.zjwam.qualification.presenter.MineAnswerPresenter;
 import com.zjwam.qualification.presenter.ipresenter.IMineAnswerPresenter;
+import com.zjwam.qualification.view.activity.MineAskDeatilsActivity;
 import com.zjwam.qualification.view.activity.MineQAActivity;
 import com.zjwam.qualification.view.iview.IMineAnswerView;
 
@@ -94,6 +97,14 @@ public class MineAnswerFragment extends Fragment implements IMineAnswerView{
             }
         });
         mine_answer_recyclerview.refresh();
+        lRecyclerViewAdapter.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                Bundle bundle = new Bundle();
+                bundle.putString("id", String.valueOf(courseAnswerAdapter.getDataList().get(position).getSub_id()));
+                startActivity(new Intent(getActivity(), MineAskDeatilsActivity.class).putExtras(bundle));
+            }
+        });
     }
 
     private void initView() {
