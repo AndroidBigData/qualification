@@ -245,6 +245,7 @@ public class MineInfoActivity extends BaseActivity implements IMineInfoView {
     @Override
     public void setTxSuccess() {
         GlideImageUtil.setImageView(getBaseContext(),photo_path,mine_info_tx, RequestOptionsUtils.circleTransform());
+        mineInfoPresenter.setRefresh(true);
     }
 
     @Override
@@ -270,5 +271,11 @@ public class MineInfoActivity extends BaseActivity implements IMineInfoView {
         }else {
             mine_info_sex.setSelection(2);
         }
+    }
+
+    @Override
+    public void upInfoSuccess() {
+        mineInfoPresenter.setRefresh(true);
+        finish();
     }
 }

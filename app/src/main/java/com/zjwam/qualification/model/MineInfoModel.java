@@ -94,4 +94,9 @@ public class MineInfoModel implements IMineInfoModel {
         };
         OkGoUtils.postRequets(url,context,param,jsonCallback);
     }
+
+    @Override
+    public void setRefresh(Context context,boolean isRefresh) {
+        QlftPreference.getInstance(context).setIsRefresh(isRefresh);
+    }
 }

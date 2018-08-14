@@ -6,4 +6,5 @@ public interface IMineInfoView {
     void setTxSuccess();
     void showMsg(String msg);
     void setMineInfo(MineInfoBean mineInfoBean);
+    void upInfoSuccess();
 }

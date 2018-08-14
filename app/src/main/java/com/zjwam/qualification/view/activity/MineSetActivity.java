@@ -68,4 +68,12 @@ public class MineSetActivity extends BaseActivity {
         title = findViewById(R.id.title_name);
         back = findViewById(R.id.back);
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (QlftPreference.getInstance(getBaseContext()).IsRefresh()){
+            finish();
+        }
+    }
 }

@@ -16,4 +16,5 @@ public interface IMineInfoModel {
     String Uid(Context context);
     void getInfo(String url, Object context, Map<String,String> param, BasicCallback<ResponseBean<MineInfoBean>> basicCallback);
     void upInfo(String url, Object context, Map<String,String> param, BasicCallback<ResponseBean<EmptyBean>> basicCallback);
+    void setRefresh(Context context,boolean isRefresh);
 }

@@ -20,6 +20,7 @@ import com.zjwam.qualification.bean.MineBean;
 import com.zjwam.qualification.presenter.MinePresenter;
 import com.zjwam.qualification.presenter.ipresenter.IMinePresenter;
 import com.zjwam.qualification.utils.GlideImageUtil;
+import com.zjwam.qualification.utils.QlftPreference;
 import com.zjwam.qualification.utils.RequestOptionsUtils;
 import com.zjwam.qualification.view.activity.AboutActivity;
 import com.zjwam.qualification.view.activity.MineCommnetActivity;
@@ -122,5 +123,14 @@ public class MineFragment extends Fragment implements IMineView {
     @Override
     public void showMsg(String msg) {
         Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (QlftPreference.getInstance(context).IsRefresh()){
+            minePresenter.getMine();
+            QlftPreference.getInstance(context).setIsRefresh(false);
+        }
     }
 }

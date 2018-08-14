@@ -227,7 +227,7 @@
             android:layout_width="14dp"
             android:layout_height="14dp"
             android:src="@drawable/mine_about"
-            android:scaleType="centerCrop"
+            android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginStart="15dp"/>
         <TextView

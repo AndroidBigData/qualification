@@ -90,6 +90,7 @@ public class MineInfoPresenter implements IMineInfoPresenter {
             @Override
             public void onSuccess(Response<ResponseBean<EmptyBean>> response) {
                 mineInfoView.showMsg(response.body().msg);
+                mineInfoView.upInfoSuccess();
             }
 
             @Override
@@ -104,5 +105,10 @@ public class MineInfoPresenter implements IMineInfoPresenter {
 
             }
         });
+    }
+
+    @Override
+    public void setRefresh(boolean isRefresh) {
+        mineInfoModel.setRefresh(context,isRefresh);
     }
 }
