@@ -19,9 +19,9 @@
     <application
         android:name=".basic.QlftApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/ic_wxlm"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_wxlm_r"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -88,7 +88,8 @@
         <activity
             android:name=".view.activity.MineMsgDeatilsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.MineAskDeatilsActivity"></activity>
+        <activity android:name=".view.activity.MineAskDeatilsActivity"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

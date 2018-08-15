@@ -69,7 +69,7 @@ public class AboutActivity extends BaseActivity implements IAboutView{
                         .setContentText("正在下载...")
                         .setContentInfo("0%")
                         .setProgress(100,0,true)
-                        .setSmallIcon(R.mipmap.ic_launcher);
+                        .setSmallIcon(R.mipmap.ic_wxlm);
                 OkGo.<File>get(downUrl)
                         .tag(this)
                         .execute(new FileCallback() {
