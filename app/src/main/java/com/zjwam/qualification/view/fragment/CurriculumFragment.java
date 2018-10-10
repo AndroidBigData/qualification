@@ -9,11 +9,15 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.jdsjlzx.interfaces.OnItemClickListener;
@@ -24,14 +28,18 @@ import com.github.jdsjlzx.recyclerview.LRecyclerViewAdapter;
 import com.github.jdsjlzx.recyclerview.ProgressStyle;
 import com.zjwam.qualification.R;
 import com.zjwam.qualification.adapter.CoursesListAdapter;
+import com.zjwam.qualification.adapter.CurriculumCheckedAdapter;
+import com.zjwam.qualification.bean.ClassSearchBean;
 import com.zjwam.qualification.bean.ClassificationBean;
 import com.zjwam.qualification.bean.CoursesListBean;
+import com.zjwam.qualification.custom.CurriculumPopupWindow;
 import com.zjwam.qualification.presenter.CurriculumPresenter;
 import com.zjwam.qualification.presenter.ipresenter.ICurriculumPresenter;
 import com.zjwam.qualification.view.activity.SearchActivity;
 import com.zjwam.qualification.view.activity.VideoPlayerActivity;
 import com.zjwam.qualification.view.iview.ICurriculumView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,14 +51,20 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
     private LRecyclerViewAdapter lRecyclerViewAdapter;
     private Context context;
     private CoursesListAdapter coursesListAdapter;
-    private boolean isRefresh = true;
+    private boolean isRefresh = true,isLinkageRefresh,isLinkageMore;
     private int page = 1,mCurrentCounter = 0,max_items;
     private ICurriculumPresenter curriculumPresenter;
     private TabLayout curriculum_tab;
     private long cid = 0;
     private List<ClassificationBean> classification;
-    private ImageView curriculum_nodata;
+    private ImageView curriculum_nodata,curriculum_checked_choice;
     private LinearLayout curriculum_linearLayout;
+    private RelativeLayout curriculum_checked;
+    private RecyclerView curriculum_checked_recyclerview;
+    private TextView curriculum_checked_text;
+    private List<String> classNames,classIds;
+    private CurriculumCheckedAdapter curriculumCheckedAdapter;
+    private String id;
 
     public CurriculumFragment() {
         // Required empty public constructor
@@ -75,13 +89,31 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
         super.onViewCreated(view, savedInstanceState);
         initView();
 
+        classIds = new ArrayList<>();
+        classNames = new ArrayList<>();
+
         curriculum_tab.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
+                isLinkageRefresh = false;
+                isLinkageMore = false;
                 if (coursesListAdapter != null){
                     coursesListAdapter.clear();
                     cid = classification.get(tab.getPosition()).getId();
                     curriculum_recyclerview.refresh();
+                }
+                if (tab.getPosition()>0){
+                    curriculum_checked.setVisibility(View.VISIBLE);
+                }else {
+                    curriculum_checked.setVisibility(View.GONE);
+                }
+                if (classNames.size() > 0 || classIds.size() > 0) {
+                    classNames.clear();
+                    classIds.clear();
+                    curriculumCheckedAdapter.notifyDataSetChanged();
+                    curriculum_checked_text.setVisibility(View.VISIBLE);
+                }else {
+                    curriculum_checked_text.setVisibility(View.VISIBLE);
                 }
             }
 
@@ -111,7 +143,11 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
                 isRefresh = true;
                 page = 1;
                 mCurrentCounter = 0;
-                curriculumPresenter.getData(String.valueOf(cid),String.valueOf(page),isRefresh);
+                if (isLinkageRefresh){
+                    curriculumPresenter.getLinkageClass(id,isRefresh, String.valueOf(page));
+                }else {
+                    curriculumPresenter.getData(String.valueOf(cid),String.valueOf(page),isRefresh);
+                }
             }
         });
         curriculum_recyclerview.setOnLoadMoreListener(new OnLoadMoreListener() {
@@ -120,7 +156,11 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
                 isRefresh = false;
                 if (mCurrentCounter < max_items) {
                     page++;
-                    curriculumPresenter.getData(String.valueOf(cid),String.valueOf(page),isRefresh);
+                    if (isLinkageMore){
+                        curriculumPresenter.getLinkageClass(id,isRefresh, String.valueOf(page));
+                    }else {
+                        curriculumPresenter.getData(String.valueOf(cid),String.valueOf(page),isRefresh);
+                    }
                 } else {
                     curriculum_recyclerview.setNoMore(true);
                 }
@@ -145,6 +185,12 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
                 startActivity(new Intent(getActivity(), SearchActivity.class));
             }
         });
+        curriculum_checked_choice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                curriculumPresenter.getLinkageData(String.valueOf(cid));
+            }
+        });
     }
 
     private void initView() {
@@ -153,6 +199,10 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
         curriculum_nodata = getActivity().findViewById(R.id.curriculum_nodata);
         curriculumPresenter = new CurriculumPresenter(context,this);
         curriculum_linearLayout = getActivity().findViewById(R.id.curriculum_linearLayout);
+        curriculum_checked_choice = getActivity().findViewById(R.id.curriculum_checked_choice);
+        curriculum_checked = getActivity().findViewById(R.id.curriculum_checked);
+        curriculum_checked_recyclerview = getActivity().findViewById(R.id.curriculum_checked_recyclerview);
+        curriculum_checked_text = getActivity().findViewById(R.id.curriculum_checked_text);
     }
 
     @Override
@@ -192,5 +242,56 @@ public class CurriculumFragment extends Fragment implements ICurriculumView{
     @Override
     public void setNoData() {
         curriculum_nodata.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void getLinkageData(List<ClassSearchBean> data) {
+        CurriculumPopupWindow curriculumPopupWindow = new CurriculumPopupWindow(getActivity(), data);
+        curriculumPopupWindow.showAsDropDown(curriculum_tab);
+        curriculumPopupWindow.setOnClickListener(new CurriculumPopupWindow.onClickListener() {
+            @Override
+            public void onClick(final List<String> className, List<String> classId) {
+                classNames.clear();
+                classIds.clear();
+                classNames = className;
+                classIds = classId;
+                initRefreshData();
+            }
+        });
+    }
+
+    @Override
+    public void getLinkageClass(List<CoursesListBean.classList> list, int count) {
+        max_items = count;
+        if (max_items>0){
+            coursesListAdapter.addAll(list);
+            mCurrentCounter += list.size();
+            curriculum_nodata.setVisibility(View.GONE);
+        }else {
+            curriculum_nodata.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void initRefreshData() {
+        if (classNames.size() > 0) {
+            curriculum_checked_text.setVisibility(View.GONE);
+        } else {
+            curriculum_checked_text.setVisibility(View.VISIBLE);
+        }
+        curriculumCheckedAdapter = new CurriculumCheckedAdapter(getActivity(), classNames);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+        curriculum_checked_recyclerview.setLayoutManager(linearLayoutManager);
+        curriculum_checked_recyclerview.setAdapter(curriculumCheckedAdapter);
+        getId(classIds);
+    }
+
+    private void getId(List<String> classIds) {
+        if (classIds.size()>0){
+            id = classIds.get(classIds.size()-1);
+            isLinkageRefresh = true;
+            isLinkageMore = true;
+            curriculum_recyclerview.refresh();
+        }
     }
 }

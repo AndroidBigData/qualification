@@ -51,10 +51,53 @@
         app:tabTextColor="@color/text_color_gray"/>
 
     <View
-        android:id="@+id/curriculum_view_line2"
+        android:id="@+id/curriculum_view_line3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_below="@+id/curriculum_tab"
+        android:background="@color/line_gray" />
+
+    <RelativeLayout
+        android:id="@+id/curriculum_checked"
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_below="@+id/curriculum_view_line3">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/curriculum_checked_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@+id/curriculum_checked_choice" />
+
+        <TextView
+            android:id="@+id/curriculum_checked_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30dp"
+            android:text="请点击选择课程分类"
+            android:textColor="@color/text_color_gray"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/curriculum_checked_choice"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/search_activity_down" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/curriculum_view_line2"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/curriculum_checked"
         android:background="@color/line_gray" />
 
     <com.github.jdsjlzx.recyclerview.LRecyclerView

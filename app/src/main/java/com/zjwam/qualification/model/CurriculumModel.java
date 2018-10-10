@@ -3,6 +3,7 @@ package com.zjwam.qualification.model;
 import android.content.Context;
 
 import com.lzy.okgo.model.Response;
+import com.zjwam.qualification.bean.ClassSearchBean;
 import com.zjwam.qualification.bean.ClassificationBean;
 import com.zjwam.qualification.bean.CoursesListBean;
 import com.zjwam.qualification.bean.ResponseBean;
@@ -70,5 +71,51 @@ public class CurriculumModel implements ICurriculumModel {
     @Override
     public String Uid(Context context) {
         return QlftPreference.getInstance(context).getUid();
+    }
+
+    @Override
+    public void getLinkageData(String url, Object context, Map<String, String> param, final BasicCallback<ResponseBean<List<ClassSearchBean>>> basicCallback) {
+        JsonCallback<ResponseBean<List<ClassSearchBean>>> jsonCallback = new JsonCallback<ResponseBean<List<ClassSearchBean>>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<List<ClassSearchBean>>> response) {
+                basicCallback.onSuccess(response);
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<List<ClassSearchBean>>> response) {
+                super.onError(response);
+                basicCallback.onError(response);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                basicCallback.onFinish();
+            }
+        };
+        OkGoUtils.postRequets(url,context,param,jsonCallback);
+    }
+
+    @Override
+    public void getLinkageClass(String url, Object context, Map<String, String> param, final BasicCallback<ResponseBean<CoursesListBean>> basicCallback) {
+        JsonCallback<ResponseBean<CoursesListBean>> jsonCallback = new JsonCallback<ResponseBean<CoursesListBean>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<CoursesListBean>> response) {
+                basicCallback.onSuccess(response);
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<CoursesListBean>> response) {
+                super.onError(response);
+                basicCallback.onError(response);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                basicCallback.onFinish();
+            }
+        };
+        OkGoUtils.postRequets(url,context,param,jsonCallback);
     }
 }

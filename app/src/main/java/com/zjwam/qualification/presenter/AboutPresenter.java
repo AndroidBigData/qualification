@@ -35,7 +35,7 @@ public class AboutPresenter implements IAboutPresenter {
         param = new HashMap<>();
         param.put("type","android");
         param.put("version",nowVersion);
-        aboutModel.getVersion(Url.url + "/api/user/version " + Url.type + aboutModel.site(context), context, param, new BasicCallback<ResponseBean<VersionBean>>() {
+        aboutModel.getVersion(Url.url + "/api/user/version" + Url.type + aboutModel.site(context), context, param, new BasicCallback<ResponseBean<VersionBean>>() {
             @Override
             public void onSuccess(Response<ResponseBean<VersionBean>> response) {
                 aboutView.getVersion(response.body().data);

@@ -1,5 +1,6 @@
 package com.zjwam.qualification.view.iview;
 
+import com.zjwam.qualification.bean.ClassSearchBean;
 import com.zjwam.qualification.bean.ClassificationBean;
 import com.zjwam.qualification.bean.CoursesListBean;
 
@@ -17,4 +18,8 @@ public interface ICurriculumView {
     void setClassification(List<ClassificationBean> classification);
 
     void setNoData();
+
+    void getLinkageData(List<ClassSearchBean> data);
+
+    void getLinkageClass(List<CoursesListBean.classList> list,int count);
 }

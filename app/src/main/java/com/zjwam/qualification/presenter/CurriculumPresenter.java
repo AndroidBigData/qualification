@@ -3,6 +3,7 @@ package com.zjwam.qualification.presenter;
 import android.content.Context;
 
 import com.lzy.okgo.model.Response;
+import com.zjwam.qualification.bean.ClassSearchBean;
 import com.zjwam.qualification.bean.ClassificationBean;
 import com.zjwam.qualification.bean.CoursesListBean;
 import com.zjwam.qualification.bean.ResponseBean;
@@ -87,6 +88,60 @@ public class CurriculumPresenter implements ICurriculumPresenter {
             @Override
             public void onFinish() {
 
+            }
+        });
+    }
+
+    @Override
+    public void getLinkageData(String cid) {
+        param = new HashMap<>();
+        param.put("cid",cid);
+        curriculumModel.getLinkageData(Url.url + "/api/cate/cate_lists"+Url.type+curriculumModel.Site(context), context, param, new BasicCallback<ResponseBean<List<ClassSearchBean>>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<List<ClassSearchBean>>> response) {
+                curriculumView.getLinkageData(response.body().data);
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<List<ClassSearchBean>>> response) {
+                Throwable exception = response.getException();
+                String error = HttpErrorMsg.getErrorMsg(exception);
+                curriculumView.showMsg(error);
+            }
+
+            @Override
+            public void onFinish() {
+
+            }
+        });
+    }
+
+    @Override
+    public void getLinkageClass(String cid, final boolean isRefresh, String page) {
+        param = new HashMap<>();
+        param.put("uid", curriculumModel.Uid(context));
+        param.put("cid",cid);
+        param.put("page", page);
+        curriculumModel.getLinkageClass(Url.url + "/api/cate/cate_search_class" + Url.type + curriculumModel.Site(context), context, param, new BasicCallback<ResponseBean<CoursesListBean>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<CoursesListBean>> response) {
+                if (isRefresh){
+                    curriculumView.clearRecyclerView();
+                }
+                CoursesListBean coursesListBean = response.body().data;
+                curriculumView.getLinkageClass(coursesListBean.getClassList(),coursesListBean.getCount());
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<CoursesListBean>> response) {
+                Throwable exception = response.getException();
+                String error = HttpErrorMsg.getErrorMsg(exception);
+                curriculumView.showMsg(error);
+            }
+
+            @Override
+            public void onFinish() {
+                curriculumView.refreshComplete();
             }
         });
     }
