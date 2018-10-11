@@ -23,9 +23,8 @@
         android:orientation="vertical">
         <TextView
             android:id="@+id/item1_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""/>
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
         <com.zjwam.qualification.custom.CurriculumGridView
             android:id="@+id/item1_grid"
             android:layout_width="match_parent"
@@ -40,9 +39,8 @@
 
         <TextView
             android:id="@+id/item2_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <com.zjwam.qualification.custom.CurriculumGridView
             android:id="@+id/item2_grid"
             android:layout_width="match_parent"
@@ -56,9 +54,8 @@
             android:verticalSpacing="10dp" />
         <TextView
             android:id="@+id/item3_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=""/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
         <com.zjwam.qualification.custom.CurriculumGridView
             android:id="@+id/item3_grid"
             android:layout_width="match_parent"
