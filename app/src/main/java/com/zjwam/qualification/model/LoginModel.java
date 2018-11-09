@@ -3,6 +3,7 @@ package com.zjwam.qualification.model;
 import android.content.Context;
 
 import com.lzy.okgo.model.Response;
+import com.zjwam.qualification.bean.EmptyBean;
 import com.zjwam.qualification.bean.LoginBean;
 import com.zjwam.qualification.bean.ResponseBean;
 import com.zjwam.qualification.callback.BasicCallback;
@@ -42,5 +43,28 @@ public class LoginModel implements ILoginModel {
         QlftPreference.getInstance(context).SetUid(uid);
         QlftPreference.getInstance(context).setSite(site);
         QlftPreference.getInstance(context).SetIsFlag(true);
+    }
+
+    @Override
+    public void pushMsg(String url, Object context, Map<String, String> param, final BasicCallback<ResponseBean<EmptyBean>> basicCallback) {
+        JsonCallback<ResponseBean<EmptyBean>> jsonCallback = new JsonCallback<ResponseBean<EmptyBean>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<EmptyBean>> response) {
+                basicCallback.onSuccess(response);
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<EmptyBean>> response) {
+                super.onError(response);
+                basicCallback.onError(response);
+            }
+
+            @Override
+            public void onFinish() {
+                super.onFinish();
+                basicCallback.onFinish();
+            }
+        };
+        OkGoUtils.postRequets(url,context,param,jsonCallback);
     }
 }

@@ -28,7 +28,7 @@
             android:layout_toStartOf="@+id/dialog_reply_llBtnReply"
             android:background="@drawable/chatform_textinput_shape"
             android:gravity="center_vertical"
-            android:hint="请填写回复内容..."
+            android:hint="请输入内容..."
             android:inputType="textMultiLine"
             android:paddingBottom="7dp"
             android:paddingLeft="10dp"

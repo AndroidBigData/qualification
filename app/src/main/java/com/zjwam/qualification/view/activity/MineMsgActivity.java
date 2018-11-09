@@ -52,7 +52,7 @@ public class MineMsgActivity extends BaseActivity implements IMineMSgView{
                 finish();
             }
         });
-        title.setText("信息中心");
+        title.setText("消息通知");
         mineMsgAdapter = new MineMsgAdapter(this);
         lRecyclerViewAdapter = new LRecyclerViewAdapter(mineMsgAdapter);
         msg_recyclerview.setAdapter(lRecyclerViewAdapter);

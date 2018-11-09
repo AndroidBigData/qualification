@@ -44,7 +44,10 @@ public class WelcomeActivity extends BaseActivity implements IWecomeView {
     @Override
     public void initData(boolean isFlag) {
         if (isFlag){
-            Intent intent = (new Intent(this, MainActivity.class));
+            Intent intent = new Intent(this, MainActivity.class);
+            if(getIntent().getBundleExtra("jpush") != null){
+                intent.putExtra("jpush", getIntent().getBundleExtra("jpush"));
+            }
             startActivity(intent);
             finish();
         }else {

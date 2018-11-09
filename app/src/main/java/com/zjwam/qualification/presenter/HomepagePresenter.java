@@ -21,7 +21,7 @@ public class HomepagePresenter implements IHomepagePresenter {
     private Context context;
     private IHomepageModel homepageModel;
     private IHomePageView homePageView;
-    private Map<String,String> param;
+    private Map<String, String> param;
 
     public HomepagePresenter(Context context, IHomePageView homePageView) {
         this.context = context;
@@ -32,8 +32,8 @@ public class HomepagePresenter implements IHomepagePresenter {
     @Override
     public void getRank() {
         param = new HashMap<>();
-        param.put("uid",homepageModel.Uid(context));
-        homepageModel.getRank(Url.url+"/api/index/index"+Url.type+homepageModel.Site(context), context, param, new BasicCallback<ResponseBean<RankBean>>() {
+        param.put("uid", homepageModel.Uid(context));
+        homepageModel.getRank(Url.url + "/api/index/index" + Url.type + homepageModel.Site(context), context, param, new BasicCallback<ResponseBean<RankBean>>() {
             @Override
             public void onSuccess(Response<ResponseBean<RankBean>> response) {
                 RankBean rankBean = response.body().data;
@@ -52,5 +52,15 @@ public class HomepagePresenter implements IHomepagePresenter {
                 homePageView.httpOver();
             }
         });
+    }
+
+    @Override
+    public String getUid() {
+        return homepageModel.Uid(context);
+    }
+
+    @Override
+    public String getSite() {
+        return homepageModel.Site(context);
     }
 }

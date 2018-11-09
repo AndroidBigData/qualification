@@ -11,6 +11,8 @@ import com.zjwam.qualification.R;
 import com.zjwam.qualification.basic.BaseActivity;
 import com.zjwam.qualification.utils.QlftPreference;
 
+import cn.jpush.android.api.JPushInterface;
+
 public class MineSetActivity extends BaseActivity {
 
     private TextView mine_setup,setup_safe,logout,title;
@@ -47,6 +49,8 @@ public class MineSetActivity extends BaseActivity {
                     startActivity(new Intent(getBaseContext(),ChangePassWorldActivity.class));
                     break;
                 case R.id.logout:
+                    JPushInterface.setAlias(getBaseContext(), 1, "");
+                    JPushInterface.deleteAlias(getBaseContext(), 1);
                     QlftPreference.getInstance(getBaseContext()).SetUid("");
                     QlftPreference.getInstance(getBaseContext()).setSite("");
                     QlftPreference.getInstance(getBaseContext()).setVideoId("");

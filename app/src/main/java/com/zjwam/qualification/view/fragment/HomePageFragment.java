@@ -28,6 +28,8 @@ import com.zjwam.qualification.view.iview.IHomePageView;
 
 import java.util.List;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -65,6 +67,9 @@ public class HomePageFragment extends Fragment implements IHomePageView{
         super.onViewCreated(view, savedInstanceState);
         initView();
         homepagePresenter = new HomepagePresenter(context,this);
+        if (homepagePresenter.getUid() != null && homepagePresenter.getUid().length()>0){
+            JPushInterface.setAlias(context, 1, homepagePresenter.getSite()+homepagePresenter.getUid());
+        }
         homepagePresenter.getRank();
     }
 

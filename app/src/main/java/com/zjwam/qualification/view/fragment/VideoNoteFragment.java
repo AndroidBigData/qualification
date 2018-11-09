@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,7 @@ import com.zjwam.qualification.presenter.VideoNotePresenter;
 import com.zjwam.qualification.presenter.ipresenter.IVideoNotePresenter;
 import com.zjwam.qualification.utils.GetVideoTime;
 import com.zjwam.qualification.utils.QlftPreference;
+import com.zjwam.qualification.utils.Reflex;
 import com.zjwam.qualification.view.activity.VideoPlayerActivity;
 import com.zjwam.qualification.view.iview.IVideoNoteView;
 
@@ -51,6 +53,7 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView {
     private GetVideoTime getVideoTime;
     private ReplayDialog replayDialog;
     private TextView zan;
+    private View rootView;
 
     public VideoNoteFragment() {
         // Required empty public constructor
@@ -79,7 +82,8 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_video_note, container, false);
+        rootView = inflater.inflate(R.layout.fragment_video_note, container, false);
+        return rootView;
     }
 
     @Override
@@ -125,9 +129,6 @@ public class VideoNoteFragment extends Fragment implements IVideoNoteView {
             @Override
             public void onClick(View view) {
                 getVideoTime.getTime();
-                if (context instanceof VideoPlayerActivity) {
-                    ((VideoPlayerActivity) context).error(videoNotePresenter.getVtime());
-                }
                 replayDialog = new ReplayDialog(getActivity());
                 replayDialog.show();
                 replayDialog.setOnBtnCommitClickListener(new View.OnClickListener() {

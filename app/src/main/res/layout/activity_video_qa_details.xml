@@ -20,8 +20,7 @@
         <ImageView
             android:id="@+id/qa_details_tx"
             android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@mipmap/ic_launcher" />
+            android:layout_height="25dp" />
 
         <TextView
             android:id="@+id/qa_details_nickname"
@@ -30,7 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="6dp"
             android:layout_toEndOf="@+id/qa_details_tx"
-            android:text="nickName"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="16sp" />
 
@@ -41,7 +40,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@+id/qa_details_nickname"
-            android:text="2018.6.25 11:31"
+            android:text=""
             android:textColor="@color/text_color_gray"
             android:textSize="12sp" />
     </RelativeLayout>
@@ -55,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
-            android:text="提问内容"
+            android:text=""
             android:textColor="@color/black"
             android:textSize="14sp"
             android:layout_toStartOf="@+id/qa_details_answer"
@@ -86,7 +85,7 @@
             android:id="@+id/qa_details_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="13"
+            android:text=""
             android:textColor="@color/colorAccent"
             android:textSize="10sp" />
 

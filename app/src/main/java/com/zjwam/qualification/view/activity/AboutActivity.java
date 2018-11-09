@@ -52,7 +52,7 @@ public class AboutActivity extends BaseActivity implements IAboutView{
                 finish();
             }
         });
-        title.setText("版本更新");
+        title.setText("版本信息");
         try {
             versionname = getPackageManager().
                     getPackageInfo(getPackageName(), 0).versionName;

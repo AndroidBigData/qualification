@@ -15,6 +15,7 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS"/>
 
     <application
         android:name=".basic.QlftApplication"
@@ -88,8 +89,34 @@
         <activity
             android:name=".view.activity.MineMsgDeatilsActivity"
             android:screenOrientation="portrait" />
-        <activity android:name=".view.activity.MineAskDeatilsActivity"
-            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".view.activity.MineAskDeatilsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".view.activity.LogoutNotifiActivity"
+            android:theme="@style/activityDialog" />
+        <!-- User defined. 用户自定义的广播接收器 -->
+        <receiver
+            android:name=".receiver.MyReceiver"
+            android:enabled="true">
+            <intent-filter>
+
+                <!-- Required 用户注册SDK的intent -->
+                <action android:name="cn.jpush.android.intent.REGISTRATION" />
+                <!-- Required 用户接收SDK消息的intent -->
+                <action android:name="cn.jpush.android.intent.MESSAGE_RECEIVED" />
+                <!-- Required 用户接收SDK通知栏信息的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED" />
+                <!-- Required 用户打开自定义通知栏的intent -->
+                <action android:name="cn.jpush.android.intent.NOTIFICATION_OPENED" />
+                <!-- 接收网络变化 连接/断开 since 1.6.3 -->
+                <action android:name="cn.jpush.android.intent.CONNECTION" />
+
+                <category android:name="com.zjwam.qualification" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".view.activity.NewsWebActivity"></activity>
     </application>
 
 </manifest>

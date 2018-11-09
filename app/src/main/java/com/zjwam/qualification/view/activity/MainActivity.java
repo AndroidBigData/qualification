@@ -18,6 +18,9 @@ import com.zjwam.qualification.view.fragment.CurriculumFragment;
 import com.zjwam.qualification.view.fragment.HomePageFragment;
 import com.zjwam.qualification.view.fragment.MineFragment;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,6 +43,28 @@ public class MainActivity extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null){
+            if (bundle.getBundle("jpush") != null){
+                String data = bundle.getBundle("jpush").getString("info");
+                try {
+                    JSONObject object = new JSONObject(data);
+                    if (object.toString().contains("url")) {
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putString("url", object.getString("url"));
+                        Intent i = new Intent(getBaseContext(), NewsWebActivity.class).putExtras(bundle1);
+                        startActivity(i);
+                    } else if (object.toString().contains("id")) {
+                        Bundle bundle1 = new Bundle();
+                        bundle1.putLong("id", Long.parseLong(object.getString("id")));
+                        Intent i = new Intent(getBaseContext(), VideoPlayerActivity.class).putExtras(bundle1);
+                        startActivity(i);
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         initView();
         initData();
 

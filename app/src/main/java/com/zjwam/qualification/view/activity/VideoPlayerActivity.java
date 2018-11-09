@@ -67,7 +67,11 @@ public class VideoPlayerActivity extends BaseActivity implements IVideoPlayerVie
     private void initData() {
         id = getIntent().getExtras().getLong("id");
         name = getIntent().getExtras().getString("name");
-        title_name.setText(name);
+        if (name != null && name.length()>0){
+            title_name.setText(name);
+        }else {
+            title_name.setText("课程详情");
+        }
         initVideo();
         titleList = new ArrayList<>();
         titleList.add("目录");

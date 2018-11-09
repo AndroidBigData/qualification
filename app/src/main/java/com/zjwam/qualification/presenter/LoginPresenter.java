@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.lzy.okgo.model.Response;
+import com.zjwam.qualification.bean.EmptyBean;
 import com.zjwam.qualification.bean.LoginBean;
 import com.zjwam.qualification.bean.ResponseBean;
 import com.zjwam.qualification.callback.BasicCallback;
@@ -22,7 +23,7 @@ public class LoginPresenter implements ILoginPresenter {
     private ILoginModel loginModel;
     private ILoginView loginView;
     private Map<String,String> param;
-    private String msg;
+    private String msg,uid,site;
 
     public LoginPresenter(Context context,ILoginView loginView) {
         this.context = context;
@@ -40,10 +41,10 @@ public class LoginPresenter implements ILoginPresenter {
                 @Override
                 public void onSuccess(Response<ResponseBean<LoginBean>> response) {
                     msg = response.body().msg;
-                    String uid = String.valueOf(response.body().data.getUid());
-                    String site = response.body().data.getSite();
+                    uid = String.valueOf(response.body().data.getUid());
+                    site = response.body().data.getSite();
                     loginModel.saveLoginMsg(context,uid,site);
-                    loginView.jumpToMainActivity();
+                    loginView.pushMsg();
                 }
                 @Override
                 public void onError(Response<ResponseBean<LoginBean>> response) {
@@ -65,5 +66,28 @@ public class LoginPresenter implements ILoginPresenter {
         Intent intent = new Intent();
         intent.setAction("exitapp");
         context.sendBroadcast(intent);
+    }
+
+    @Override
+    public void pushMsg() {
+        param = new HashMap<>();
+        param.put("utype",site+uid);
+        loginModel.pushMsg(Url.url + "/api/Login/push", context, param, new BasicCallback<ResponseBean<EmptyBean>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<EmptyBean>> response) {
+
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<EmptyBean>> response) {
+
+            }
+
+            @Override
+            public void onFinish() {
+                loginView.setAlias(site+uid);
+                loginView.jumpToMainActivity();
+            }
+        });
     }
 }

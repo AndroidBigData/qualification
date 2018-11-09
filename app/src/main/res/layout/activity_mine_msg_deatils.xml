@@ -66,8 +66,6 @@
             android:layout_marginEnd="10dp"
             android:layout_marginStart="18dp"
             android:layout_marginTop="10dp"
-            android:ellipsize="end"
-            android:maxLines="2"
             android:text="通知内容"
             android:textColor="@color/note"
             android:textSize="12sp" />

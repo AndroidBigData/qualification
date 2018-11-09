@@ -2,6 +2,7 @@ package com.zjwam.qualification.view.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,8 @@ import com.zjwam.qualification.basic.BaseActivity;
 import com.zjwam.qualification.presenter.LoginPresenter;
 import com.zjwam.qualification.presenter.ipresenter.ILoginPresenter;
 import com.zjwam.qualification.view.iview.ILoginView;
+
+import cn.jpush.android.api.JPushInterface;
 
 public class LoginActivity extends BaseActivity implements ILoginView {
     private String EXITAPP = "再按一次退出程序";
@@ -63,6 +66,19 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     @Override
     public void jumpToMainActivity() {
         startActivity(new Intent(this, MainActivity.class));
+        finish();
+    }
+
+    @Override
+    public void pushMsg() {
+        loginPresenter.pushMsg();
+    }
+
+    @Override
+    public void setAlias(String ailas) {
+        JPushInterface.setAlias(getBaseContext(), 1, "");
+        JPushInterface.deleteAlias(getBaseContext(), 1);
+        JPushInterface.setAlias(getBaseContext(), 1, ailas);
     }
 
     @Override

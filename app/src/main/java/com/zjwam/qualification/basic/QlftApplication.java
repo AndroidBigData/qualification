@@ -10,12 +10,17 @@ import com.lzy.okgo.https.HttpsUtils;
 import com.lzy.okgo.interceptor.HttpLoggingInterceptor;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
+
+import cn.jpush.android.api.JPushInterface;
 import okhttp3.OkHttpClient;
 
 public class QlftApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        JPushInterface.setDebugMode(false);
+        //初始化极光推送
+        JPushInterface.init(this);
         OkHttpClient.Builder builder = new OkHttpClient.Builder();
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor("OkGo");
         //log打印级别，决定了log显示的详细程度
