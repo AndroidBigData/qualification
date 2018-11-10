@@ -64,8 +64,9 @@ public class LoginActivity extends BaseActivity implements ILoginView {
     }
 
     @Override
-    public void jumpToMainActivity() {
+    public void jumpToMainActivity(String alias) {
         startActivity(new Intent(this, MainActivity.class));
+        JPushInterface.setAlias(getBaseContext(), 1, alias);
         finish();
     }
 
@@ -74,12 +75,6 @@ public class LoginActivity extends BaseActivity implements ILoginView {
         loginPresenter.pushMsg();
     }
 
-    @Override
-    public void setAlias(String ailas) {
-        JPushInterface.setAlias(getBaseContext(), 1, "");
-        JPushInterface.deleteAlias(getBaseContext(), 1);
-        JPushInterface.setAlias(getBaseContext(), 1, ailas);
-    }
 
     @Override
     protected void setStatusBar() {

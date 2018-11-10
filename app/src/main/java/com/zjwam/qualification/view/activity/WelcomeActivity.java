@@ -14,26 +14,14 @@ import com.zjwam.qualification.view.iview.IWecomeView;
 
 public class WelcomeActivity extends BaseActivity implements IWecomeView {
 
-    private ConstraintLayout wecomeimg;
     private WelcomePresenter welcomePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        init();
         welcomePresenter = new WelcomePresenter(this,this);
         welcomePresenter.manageData();
-    }
-
-    private void init() {
-        wecomeimg = findViewById(R.id.wecomeimg);
-        ViewGroup.LayoutParams params = wecomeimg.getLayoutParams();
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        params.width = dm.widthPixels;
-        params.height = (params.width) * 1920 / 1080;
-        wecomeimg.setLayoutParams(params);
     }
 
     @Override

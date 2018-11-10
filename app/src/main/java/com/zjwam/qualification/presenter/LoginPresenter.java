@@ -85,8 +85,7 @@ public class LoginPresenter implements ILoginPresenter {
 
             @Override
             public void onFinish() {
-                loginView.setAlias(site+uid);
-                loginView.jumpToMainActivity();
+                loginView.jumpToMainActivity(site+uid);
             }
         });
     }
